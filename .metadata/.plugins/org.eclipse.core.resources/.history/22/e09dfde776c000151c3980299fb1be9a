@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/shema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/shema/p"
+	xmlns:context="http://www.springframework.org/shema/context"
+	xmlns:mvc="http://www.springframework.org/shema/mvc"
+	xmlns:aop="http://www.springframework.org/shema/aop"
+	xmlns:tx="http://www.springframework.org/shema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/shema/beans
+	http://www.springframework.org/shema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/shema/context
+	http://www.springframework.org/shema/context/spring-context-4.2.xsd
+	http://www.springframework.org/shema/mvc
+	http://www.springframework.org/shema/mvc/spring-mvc-4.2.xsd
+	http://www.springframework.org/shema/aop
+	http://www.springframework.org/shema/aop/spring-aop-4.2.xsd
+	http://www.springframework.org/shema/tx
+	http://www.springframework.org/shema/tx/spring-tx-4.2.xsd"
+></beans>
