@@ -1,5 +1,19 @@
 <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CDshop index</title>
+<link rel="stylesheet" media="screen" type="text/css" href="Site.css"/>
+</head>
+
 <body>
-<h2>Hello World!</h2>
+<div id="header">
+	<h1>MVC CDshop</h1>
+	<ul id="navlist">
+		<li class="first"><a href="/MVCcdshop/" id="current">Home</a></li>
+		<li><a href="/MVCcdshop/spring/Shop/">Shop</a></li>
+	</ul>
+</div>
+
+
 </body>
 </html>
