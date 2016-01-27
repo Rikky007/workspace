@@ -6,7 +6,6 @@
 package cz.MVCcdshop.Entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -38,7 +37,7 @@ public class Usersrole implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ROLEID")
-    private BigDecimal roleid;
+    private Integer roleid;
     @Basic(optional = false)
     @Column(name = "ROLENAME")
     private String rolename;
@@ -48,20 +47,20 @@ public class Usersrole implements Serializable {
     public Usersrole() {
     }
 
-    public Usersrole(BigDecimal roleid) {
+    public Usersrole(Integer roleid) {
         this.roleid = roleid;
     }
 
-    public Usersrole(BigDecimal roleid, String rolename) {
+    public Usersrole(Integer roleid, String rolename) {
         this.roleid = roleid;
         this.rolename = rolename;
     }
 
-    public BigDecimal getRoleid() {
+    public Integer getRoleid() {
         return roleid;
     }
 
-    public void setRoleid(BigDecimal roleid) {
+    public void setRoleid(Integer roleid) {
         this.roleid = roleid;
     }
 

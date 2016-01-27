@@ -6,7 +6,6 @@
 package cz.MVCcdshop.Entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -42,7 +41,7 @@ public class Users implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "USERID")
-    private BigDecimal userid;
+    private Integer userid;
     @Basic(optional = false)
     @Column(name = "USERNAME")
     private String username;
@@ -64,11 +63,11 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(BigDecimal userid) {
+    public Users(Integer userid) {
         this.userid = userid;
     }
 
-    public Users(BigDecimal userid, String username, String password, String firstname, String lastname) {
+    public Users(Integer userid, String username, String password, String firstname, String lastname) {
         this.userid = userid;
         this.username = username;
         this.password = password;
@@ -76,11 +75,11 @@ public class Users implements Serializable {
         this.lastname = lastname;
     }
 
-    public BigDecimal getUserid() {
+    public Integer getUserid() {
         return userid;
     }
 
-    public void setUserid(BigDecimal userid) {
+    public void setUserid(Integer userid) {
         this.userid = userid;
     }
 

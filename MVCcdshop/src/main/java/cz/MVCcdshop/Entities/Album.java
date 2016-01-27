@@ -6,8 +6,7 @@
 package cz.MVCcdshop.Entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -44,16 +43,16 @@ public class Album implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ALBUMID")
-    private BigDecimal albumid;
+    private Integer albumid;
     @Basic(optional = false)
     @Column(name = "ARTISTID")
-    private BigInteger artistid;
+    private Integer artistid;
     @Basic(optional = false)
     @Column(name = "TITLE")
     private String title;
     @Basic(optional = false)
     @Column(name = "PRICE")
-    private String price;
+    private Double price;
     @Basic(optional = false)
     @Column(name = "ALBUMART")
     private String albumart;
@@ -68,11 +67,11 @@ public class Album implements Serializable {
     public Album() {
     }
 
-    public Album(BigDecimal albumid) {
+    public Album(Integer albumid) {
         this.albumid = albumid;
     }
 
-    public Album(BigDecimal albumid, BigInteger artistid, String title, String price, String albumart) {
+    public Album(Integer albumid, Integer artistid, String title, Double price, String albumart) {
         this.albumid = albumid;
         this.artistid = artistid;
         this.title = title;
@@ -80,19 +79,19 @@ public class Album implements Serializable {
         this.albumart = albumart;
     }
 
-    public BigDecimal getAlbumid() {
+    public Integer getAlbumid() {
         return albumid;
     }
 
-    public void setAlbumid(BigDecimal albumid) {
+    public void setAlbumid(Integer albumid) {
         this.albumid = albumid;
     }
 
-    public BigInteger getArtistid() {
+    public Integer getArtistid() {
         return artistid;
     }
 
-    public void setArtistid(BigInteger artistid) {
+    public void setArtistid(Integer artistid) {
         this.artistid = artistid;
     }
 
@@ -104,11 +103,11 @@ public class Album implements Serializable {
         this.title = title;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

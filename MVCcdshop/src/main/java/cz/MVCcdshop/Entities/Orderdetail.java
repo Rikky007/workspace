@@ -6,8 +6,6 @@
 package cz.MVCcdshop.Entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,16 +36,16 @@ public class Orderdetail implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ORDERDETAILID")
-    private BigDecimal orderdetailid;
+    private Integer orderdetailid;
     @Basic(optional = false)
     @Column(name = "ORDERID")
-    private BigInteger orderid;
+    private Integer orderid;
     @Basic(optional = false)
     @Column(name = "QUANTITY")
-    private BigInteger quantity;
+    private Integer quantity;
     @Basic(optional = false)
     @Column(name = "UNITPRICE")
-    private BigDecimal unitprice;
+    private Double unitprice;
     @JoinColumn(name = "ALBUMID", referencedColumnName = "ALBUMID")
     @ManyToOne(optional = false)
     private Album albumid;
@@ -55,46 +53,46 @@ public class Orderdetail implements Serializable {
     public Orderdetail() {
     }
 
-    public Orderdetail(BigDecimal orderdetailid) {
+    public Orderdetail(Integer orderdetailid) {
         this.orderdetailid = orderdetailid;
     }
 
-    public Orderdetail(BigDecimal orderdetailid, BigInteger orderid, BigInteger quantity, BigDecimal unitprice) {
+    public Orderdetail(Integer orderdetailid, Integer orderid, Integer quantity, Double unitprice) {
         this.orderdetailid = orderdetailid;
         this.orderid = orderid;
         this.quantity = quantity;
         this.unitprice = unitprice;
     }
 
-    public BigDecimal getOrderdetailid() {
+    public Integer getOrderdetailid() {
         return orderdetailid;
     }
 
-    public void setOrderdetailid(BigDecimal orderdetailid) {
+    public void setOrderdetailid(Integer orderdetailid) {
         this.orderdetailid = orderdetailid;
     }
 
-    public BigInteger getOrderid() {
+    public Integer getOrderid() {
         return orderid;
     }
 
-    public void setOrderid(BigInteger orderid) {
+    public void setOrderid(Integer orderid) {
         this.orderid = orderid;
     }
 
-    public BigInteger getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(BigInteger quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public BigDecimal getUnitprice() {
+    public Double getUnitprice() {
         return unitprice;
     }
 
-    public void setUnitprice(BigDecimal unitprice) {
+    public void setUnitprice(Double unitprice) {
         this.unitprice = unitprice;
     }
 

@@ -6,7 +6,6 @@
 package cz.MVCcdshop.Entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +32,7 @@ public class Artist implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ARTISTID")
-    private BigDecimal artistid;
+    private Integer artistid;
     @Basic(optional = false)
     @Column(name = "NAME")
     private String name;
@@ -41,20 +40,20 @@ public class Artist implements Serializable {
     public Artist() {
     }
 
-    public Artist(BigDecimal artistid) {
+    public Artist(Integer artistid) {
         this.artistid = artistid;
     }
 
-    public Artist(BigDecimal artistid, String name) {
+    public Artist(Integer artistid, String name) {
         this.artistid = artistid;
         this.name = name;
     }
 
-    public BigDecimal getArtistid() {
+    public Integer getArtistid() {
         return artistid;
     }
 
-    public void setArtistid(BigDecimal artistid) {
+    public void setArtistid(Integer artistid) {
         this.artistid = artistid;
     }
 

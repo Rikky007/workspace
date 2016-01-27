@@ -167,8 +167,7 @@
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
-			<type>jar</type>
-			<scope>compile</scope>
+			<type>jar</type>	
 		</dependency>
 		<dependency>
 			<groupId>taglibs</groupId>

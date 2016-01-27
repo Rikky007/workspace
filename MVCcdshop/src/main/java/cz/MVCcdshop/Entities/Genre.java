@@ -6,7 +6,6 @@
 package cz.MVCcdshop.Entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -39,7 +38,7 @@ public class Genre implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "GENREID")
-    private BigDecimal genreid;
+    private Integer genreid;
     @Basic(optional = false)
     @Column(name = "NAME")
     private String name;
@@ -52,21 +51,21 @@ public class Genre implements Serializable {
     public Genre() {
     }
 
-    public Genre(BigDecimal genreid) {
+    public Genre(Integer genreid) {
         this.genreid = genreid;
     }
 
-    public Genre(BigDecimal genreid, String name, String description) {
+    public Genre(Integer genreid, String name, String description) {
         this.genreid = genreid;
         this.name = name;
         this.description = description;
     }
 
-    public BigDecimal getGenreid() {
+    public Integer getGenreid() {
         return genreid;
     }
 
-    public void setGenreid(BigDecimal genreid) {
+    public void setGenreid(Integer genreid) {
         this.genreid = genreid;
     }
 

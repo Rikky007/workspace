@@ -6,8 +6,6 @@
 package cz.MVCcdshop.Entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -40,10 +38,10 @@ public class Cart implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "CARTID")
-    private BigDecimal cartid;
+    private Integer cartid;
     @Basic(optional = false)
     @Column(name = "COUNT")
-    private BigInteger count;
+    private Integer count;
     @Basic(optional = false)
     @Column(name = "DATECREATED")
     @Temporal(TemporalType.TIMESTAMP)
@@ -55,29 +53,29 @@ public class Cart implements Serializable {
     public Cart() {
     }
 
-    public Cart(BigDecimal cartid) {
+    public Cart(Integer cartid) {
         this.cartid = cartid;
     }
 
-    public Cart(BigDecimal cartid, BigInteger count, Date datecreated) {
+    public Cart(Integer cartid, Integer count, Date datecreated) {
         this.cartid = cartid;
         this.count = count;
         this.datecreated = datecreated;
     }
 
-    public BigDecimal getCartid() {
+    public Integer getCartid() {
         return cartid;
     }
 
-    public void setCartid(BigDecimal cartid) {
+    public void setCartid(Integer cartid) {
         this.cartid = cartid;
     }
 
-    public BigInteger getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(BigInteger count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 

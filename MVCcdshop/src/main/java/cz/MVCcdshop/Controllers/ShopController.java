@@ -1,5 +1,9 @@
 package cz.MVCcdshop.Controllers;
 
+import cz.MVCcdshop.Entities.Genre;
+import cz.MVCcdshop.Models.GenreModel;
+import java.util.List;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/Shop")
 public class ShopController {
 	
-	
+	@Resource(name="gnreService")
+        private GenreModel genreModel;
 	/**
 	 * CDshop Root 
 	 * @param model
@@ -18,7 +23,12 @@ public class ShopController {
 	 */
 	@RequestMapping(value = "/" , method = RequestMethod.GET)
 	public String getShopIndexPage(ModelMap model){
-		return "shopindex";
+            
+            List<Genre>myGenreList = genreModel.findAllGenres();
+            model.put("genreList", myGenreList);
+            model.put("genreCount", myGenreList.size());
+            
+            return "shopindex";
 	}
 	
 	/**

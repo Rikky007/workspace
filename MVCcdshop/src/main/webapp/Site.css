@@ -38,7 +38,7 @@ body
 {
 	height: 300px; 
 	width: 700px; 
-	background: url(Images/home-showcase.png) no-repeat;
+	background: no-repeat;
 }
 
 ul li a

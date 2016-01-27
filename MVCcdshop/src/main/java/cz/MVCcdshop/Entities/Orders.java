@@ -6,7 +6,6 @@
 package cz.MVCcdshop.Entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -45,7 +44,7 @@ public class Orders implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ORDERID")
-    private BigDecimal orderid;
+    private Integer orderid;
     @Column(name = "ADDRESS")
     private String address;
     @Basic(optional = false)
@@ -64,7 +63,7 @@ public class Orders implements Serializable {
     private String email;
     @Basic(optional = false)
     @Column(name = "TOTAL")
-    private BigDecimal total;
+    private Integer total;
     @JoinColumn(name = "USERID", referencedColumnName = "USERID")
     @ManyToOne
     private Users userid;
@@ -72,21 +71,21 @@ public class Orders implements Serializable {
     public Orders() {
     }
 
-    public Orders(BigDecimal orderid) {
+    public Orders(Integer orderid) {
         this.orderid = orderid;
     }
 
-    public Orders(BigDecimal orderid, Date orderdate, BigDecimal total) {
+    public Orders(Integer orderid, Date orderdate, Integer total) {
         this.orderid = orderid;
         this.orderdate = orderdate;
         this.total = total;
     }
 
-    public BigDecimal getOrderid() {
+    public Integer getOrderid() {
         return orderid;
     }
 
-    public void setOrderid(BigDecimal orderid) {
+    public void setOrderid(Integer orderid) {
         this.orderid = orderid;
     }
 
@@ -146,11 +145,11 @@ public class Orders implements Serializable {
         this.email = email;
     }
 
-    public BigDecimal getTotal() {
+    public Integer getTotal() {
         return total;
     }
 
-    public void setTotal(BigDecimal total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
 

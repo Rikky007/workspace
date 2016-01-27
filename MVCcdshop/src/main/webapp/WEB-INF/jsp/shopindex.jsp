@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,12 +16,18 @@
 		<li><a href="/MVCcdshop/spring/Shop/">Shop</a></li>
 	</ul>
 </div>
-<h1>Dostupné žánry:</h1>
+<h1>Dostupné žánry (${genreCount}):</h1>
 <div style="height:20px"></div>
-<ul>
+<c:forEach items="${genreList}" var="myGenre">
+    <c:url var="albumUrl" value="Browse?genre=${myGenre.name}/>
+           <h3><li><a href="${albumUrl}"><c:out value="${myGenre.name}></a></li></h3>      
+           
+</c:forEach>  
+
+<!--<ul>
 	<li><a href="Browse?genre=Classical">Klasika</a></li>
 	<li><a href="Browse?genre=Jazz">Jazz</a></li>
 	<li><a href="Browse?genre=Rock">Rock</a></li>
-</ul>
+</ul>-->
 </body>
 </html>
