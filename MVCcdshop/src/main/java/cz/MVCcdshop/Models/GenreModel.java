@@ -55,6 +55,11 @@ public class GenreModel {
         
     }
     
+    /**
+     * Výpis žánru podle ID
+     * @param passId
+     * @return 
+     */
     @SuppressWarnings("unchecked")
     public Genre findGenreById(int passId){
         List<Genre> genreList = new ArrayList<Genre>();

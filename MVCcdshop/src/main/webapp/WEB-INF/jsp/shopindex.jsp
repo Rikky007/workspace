@@ -17,17 +17,13 @@
 	</ul>
 </div>
 <h1>Dostupné žánry (${genreCount}):</h1>
-<div style="height:20px"></div>
+
 <c:forEach items="${genreList}" var="myGenre">
-    <c:url var="albumUrl" value="Browse?genre=${myGenre.name}/>
-           <h3><li><a href="${albumUrl}"><c:out value="${myGenre.name}></a></li></h3>      
+    <c:url var="albumUrl" value="Browse?genre=${myGenre.name}" />
+           <h3><li><a href="${albumUrl}"><c:out value="${myGenre.name}"/></a></li></h3>      
            
 </c:forEach>  
 
-<!--<ul>
-	<li><a href="Browse?genre=Classical">Klasika</a></li>
-	<li><a href="Browse?genre=Jazz">Jazz</a></li>
-	<li><a href="Browse?genre=Rock">Rock</a></li>
-</ul>-->
+
 </body>
 </html>
