@@ -32,6 +32,7 @@
 			<property name="persistenceUnitName" value="MVCcdshopPU" />
 			<property name="jpaDialect" ref="jpaDialect" />
 			<property name="jpaVendorAdapter" ref="jpaAdapter" />
+                        <property name="persistence-xml-location">classpath*:META-INF/persistence.xml</prpoperty>
 		</bean>
 		<bean id="jpaDialect"	
 			class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"

@@ -1,7 +1,10 @@
 package cz.MVCcdshop.Controllers;
 
+import cz.MVCcdshop.Entities.Album;
 import cz.MVCcdshop.Entities.Genre;
+import cz.MVCcdshop.Models.AlbumModel;
 import cz.MVCcdshop.Models.GenreModel;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
@@ -52,8 +55,20 @@ public class ShopController {
 	 */
 	@RequestMapping(value = "/Browse" , method = RequestMethod.GET)
 	public String getShopBrowsePage(@RequestParam(value="genre", required=false)String genreName, ModelMap model){
+		List<Album> foundAlbum = new ArrayList<Album>();
+                if (genreName == null){
+                    model.put("genre", "Empty");
+                }else{
+                    List<Album> myAlbum = AlbumModel.findAllAlbums();
+                    for(Album tempAlbum: myAlbum){
+                        if(tempAlbum.getGenreid().getName().equals(genreName)){
+                            foundAlbum.add(tempAlbum);
+                        }
+                    }
+                    model.put("genre", genreName);
+                    model.put("foundAlbum", foundAlbum);
+                }
 		
-		model.addAttribute("genre",genreName);
 		return "Browse";
 	}
 	

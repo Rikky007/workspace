@@ -15,6 +15,6 @@
 		<li><a href="/MVCcdshop/spring/Shop/">Shop</a></li>
 	</ul>
 </div>
-	<h2>Hello from Store browse</h2>
+    <h2>Dostupné žánry (${genreCount}):</h2>
 </body>
 </html>

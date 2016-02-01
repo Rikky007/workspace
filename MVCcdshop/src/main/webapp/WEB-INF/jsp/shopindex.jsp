@@ -16,7 +16,7 @@
 		<li><a href="/MVCcdshop/spring/Shop/">Shop</a></li>
 	</ul>
 </div>
-<h1>Dostupné žánry (${genreCount}):</h1>
+    <h2>Dostupné žánry (${genreCount}):</h2>
 
 <c:forEach items="${genreList}" var="myGenre">
     <c:url var="albumUrl" value="Browse?genre=${myGenre.name}" />
