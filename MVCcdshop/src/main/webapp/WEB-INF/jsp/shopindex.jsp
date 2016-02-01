@@ -13,7 +13,7 @@
 	<h1>MVC CDshop</h1>
 	<ul id="navlist">
 		<li class="first"><a href="/MVCcdshop/" id="current">Home</a></li>
-		<li><a href="/MVCcdshop/spring/Shop/">Shop</a></li>
+		<li><a href="/MVCcdshop/Shop/">Shop</a></li>
 	</ul>
 </div>
     <h2>Dostupné žánry (${genreCount}):</h2>

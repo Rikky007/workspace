@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/Shop")
 public class ShopController {
 	
-	@Resource(name="gnreService")
+	@Resource(name="genreService")
         private GenreModel genreModel;
+        
+        @Resource(name="albumService")
+        private AlbumModel albumModel;
+        
 	/**
 	 * CDshop Root 
 	 * @param model
@@ -36,14 +40,20 @@ public class ShopController {
 	
 	/**
 	 * Details page
-	 * @param albumID
+	 * @param albumId
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/Details" , method = RequestMethod.GET)
-	public String getShopDetailsPage(@RequestParam(value="albumId", required=false)Integer albumID, ModelMap model){
+	public String getShopDetailsPage(@RequestParam(value="albumId", required=false)Integer albumId, ModelMap model){
 		
-		model.addAttribute("albumId",albumID);
+            Album tempAlbum = albumModel.findAlbumById(albumId);
+            
+                    
+                model.put("albumId",albumId);
+                model.put("detailedAlbum", tempAlbum);
+            
+		model.addAttribute("albumId",albumId);
 		return "Details";
 	}
 	
@@ -59,7 +69,7 @@ public class ShopController {
                 if (genreName == null){
                     model.put("genre", "Empty");
                 }else{
-                    List<Album> myAlbum = AlbumModel.findAllAlbums();
+                    List<Album> myAlbum = albumModel.findAllAlbums();
                     for(Album tempAlbum: myAlbum){
                         if(tempAlbum.getGenreid().getName().equals(genreName)){
                             foundAlbum.add(tempAlbum);
