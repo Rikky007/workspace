@@ -32,7 +32,7 @@ public class ShopManagerController {
     /**
      *
      */
-    protected static Logger log = Logger.getLogger("Controller");
+    //protected static Logger log = Logger.getLogger("Controller");
     
     @Resource(name ="genreService")
     private GenreModel genreModel;
@@ -51,15 +51,15 @@ public class ShopManagerController {
      * @return 
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView getStoreManagerPage(HttpServletRequest request, 
+    public ModelAndView getShopManagerPage(HttpServletRequest request, 
             HttpSession session, ModelMap model) {
         
-        log.debug("obdržena Store Manager Page");
+        //log.debug("obdržena Store Manager Page");
         
         List<Album> albumList = albumModel.findAllAlbums();
         
         model.put("albumList", albumList);
-        return new ModelAndView("StoreManager","albumModel",albumModel);
+        return new ModelAndView("ShopManager","albumModel",albumModel);
     }
     
     /**
@@ -71,7 +71,7 @@ public class ShopManagerController {
     @RequestMapping(value = "/DetailsAlbum", method = RequestMethod.GET)
     public String getDetailsAlbumPage(@RequestParam("detailsAlbumId")Integer detailsAlbumId,ModelMap model){
         
-        log.debug("obdržena Details Album Page");
+        //log.debug("obdržena Details Album Page");
         Album myAlbum = albumModel.findAlbumById(detailsAlbumId);
         
         model.put("detailsAlbumId", detailsAlbumId);

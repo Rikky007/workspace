@@ -40,7 +40,7 @@ public class ArtistModel {
     }
     
     /**
-     * výpis žánru
+     * výpis umělců
      * @return 
      */
     public List<Artist> findAllArtists(){
@@ -56,7 +56,7 @@ public class ArtistModel {
     }
     
     /**
-     * Výpis žánru podle ID
+     * Výpis umělců podle ID
      * @param passId
      * @return 
      */
