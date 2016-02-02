@@ -17,14 +17,14 @@
                 <li><a href="/MVCcdshop/spring/Shop/">Shop</a></li>
             </ul>
         </div>
-        <form:form modelAttribute="addedAlbum" method="POST" commandName="addedAlbum" action="/MVCcdshop/Shop/Details?albumId=${addedAlbum.albumId}" >
-            <h2><c:out value="${foundAlbum.title}" /></h2>
+        <form:form modelAttribute="addedAlbum" method="POST" commandName="addedAlbum" action="/MVCcdshop/Shop/Details?albumId=${detailedAlbum.albumId}" >
+            <h2><c:out value="${detailedAlbum.title}" /></h2>
 
             <img alt="album art alba : ${detailedAlbum.title}" src="../Images/placeholder.gif" /><br/>
             <div style="height:20px"></div>
-            <h2><c:out value=" Žánr: ${foundAlbum.genreid.name}" /></h2>
-            <h2><c:out value=" Umělec: ${foundAlbum.artistid.name}" /></h2>
-            <h2><c:out value=" Cena: ${foundAlbum.price}" /></h2>
+            <h2><c:out value=" Žánr: ${detailedAlbum.genreid.name}" /></h2>
+            <h2><c:out value=" Umělec: ${detailedAlbum.artistid.name}" /></h2>
+            <h2><c:out value=" Cena: ${detailedAlbum.price}" /></h2>
             <input type="submit" value="do košíku" />
         </form:form>        
         </body>
