@@ -47,9 +47,9 @@
                     <td><%=albumModel.findArtistByIdFromAlbumModel(tempArtistId).getName()%></td>
                     <td><%=myAlbum.getTitle()%></td>
                     <td><%=myAlbum.getPrice()%></td>
-                    <td><a href="EditAlbum?editAlbumId=<%="myAlbum.getAlbumid()%>">Upravit</a></td>
-                    <td><a href="DetailsAlbum?editAlbumId=<%="myAlbum.getAlbumid()%>">Detaily</a></td>
-                    <td><a href="DeleteAlbum?editAlbumId=<%="myAlbum.getAlbumid()%>">Smazat</a></td>
+                    <td><a href="EditAlbum?editAlbumId=<%=myAlbum.getAlbumid()%>">Upravit</a></td>
+                    <td><a href="DetailsAlbum?editAlbumId=<%=myAlbum.getAlbumid()%>">Detaily</a></td>
+                    <td><a href="DeleteAlbum?editAlbumId=<%=myAlbum.getAlbumid()%>">Smazat</a></td>
 
                 </tr>
                 <%}%>  
