@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cz.MVCcdshop.Entities.Album;
+import cz.MVCcdshop.Entities.Artist;
+import cz.MVCcdshop.Entities.Genre;
 
 
 /**
@@ -29,19 +31,19 @@ import cz.MVCcdshop.Entities.Album;
 @Service("albumService")
 public class AlbumModel {
     
-    //objekt pro práci s DB
+    //objekt pro prÃ¡ci s DB
     @PersistenceContext
     private EntityManager em;
     
     @Resource(name="genreService")
-    private AlbumModel genreModel;
+    private GenreModel genreModel;
     
     @Resource(name="artistService")
     private ArtistModel artistModel;
     
     
       /**
-     * Vytvoøení objektu Album
+     * VytvoÅ™enÃ­ objektu Album
      * @param album 
      */
     @Transactional
@@ -50,7 +52,7 @@ public class AlbumModel {
     }
     
       /**
-     * výpis alb
+     * vÃ½pis alb
      * @return 
      */
     public List<Album> findAllAlbums(){
@@ -63,7 +65,7 @@ public class AlbumModel {
     }
     
     /**
-     * Výpis alb podle ID
+     * VÃ½pis alb podle ID
      * @param passId
      * @return 
      */
@@ -75,5 +77,23 @@ public class AlbumModel {
             
         albumList = q.getResultList();
         return albumList.get(0);
+    }
+    
+    /**
+     * najde Å¾Ã¡nr podle ID
+     * @param passId
+     * @return 
+     */
+    public Genre findGenreByIdFromAlbumModel(int passId){
+        return(genreModel.findGenreById(passId));
+    }
+    
+    /**
+     * najde umÄ›lce podle ID
+     * @param passId
+     * @return 
+     */
+    public Artist findArtistByIdFromAlbumModel(int passId){
+        return(artistModel.findArtistById(passId));
     }
 }

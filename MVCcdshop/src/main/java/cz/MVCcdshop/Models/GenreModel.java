@@ -26,12 +26,12 @@ import cz.MVCcdshop.Entities.Genre;
 @Service("genreService")
 public class GenreModel {
     
-    //objekt pro práci s DB
+    //objekt pro prÃ¡ci s DB
     @PersistenceContext
     private EntityManager em;
     
     /**
-     * Vytvoøení objektu Genre
+     * VytvoÅ™enÃ­ objektu Genre
      * @param genre 
      */
     @Transactional
@@ -40,11 +40,11 @@ public class GenreModel {
     }
     
     /**
-     * výpis žánrù
+     * vÃ½pis Å¾Ã¡nru
      * @return 
      */
     public List<Genre> findAllGenres(){
-        List<Genre> genreList= new ArrayList<Genre>();
+        List<Genre> genreList= new ArrayList<>();
         try{
             Query q = em.createNamedQuery("Genre.findAll");
             genreList =q.getResultList();
@@ -56,7 +56,7 @@ public class GenreModel {
     }
     
     /**
-     * Výpis žánru podle ID
+     * VÃ½pis Å¾Ã¡nru podle ID
      * @param passId
      * @return 
      */

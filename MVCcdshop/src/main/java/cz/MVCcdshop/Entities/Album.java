@@ -45,8 +45,9 @@ public class Album implements Serializable {
     @Column(name = "ALBUMID")
     private Integer albumid;
     @Basic(optional = false)
-    @Column(name = "ARTISTID")
-    private Integer artistid;
+    @JoinColumn(name = "ARTISTID", referencedColumnName = "ARTISTID")
+    @ManyToOne(optional = false)
+    private Artist artistid;
     @Basic(optional = false)
     @Column(name = "TITLE")
     private String title;
@@ -71,7 +72,7 @@ public class Album implements Serializable {
         this.albumid = albumid;
     }
 
-    public Album(Integer albumid, Integer artistid, String title, Double price, String albumart) {
+    public Album(Integer albumid, Artist artistid, String title, Double price, String albumart) {
         this.albumid = albumid;
         this.artistid = artistid;
         this.title = title;
@@ -87,11 +88,11 @@ public class Album implements Serializable {
         this.albumid = albumid;
     }
 
-    public Integer getArtistid() {
+    public Artist getArtistid() {
         return artistid;
     }
 
-    public void setArtistid(Integer artistid) {
+    public void setArtistid(Artist artistid) {
         this.artistid = artistid;
     }
 
