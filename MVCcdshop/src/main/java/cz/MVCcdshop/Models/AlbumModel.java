@@ -80,7 +80,7 @@ public class AlbumModel {
     }
     
     /**
-     * najde žánr podle ID
+     * Hledání žánru podle ID
      * @param passId
      * @return 
      */
@@ -89,11 +89,29 @@ public class AlbumModel {
     }
     
     /**
-     * najde umělce podle ID
+     * Hledání umělce podle ID
      * @param passId
      * @return 
      */
     public Artist findArtistByIdFromAlbumModel(int passId){
         return(artistModel.findArtistById(passId));
+    }
+    
+    /**
+     * Editace alba
+     * @param album 
+     */
+    @SuppressWarnings("unchecked")
+    @Transactional
+    public void edit(Album album){
+        Album newAlbum = findAlbumById(album.getAlbumid());
+        newAlbum.setGenreid(album.getGenreid());
+        newAlbum.setArtistid(album.getArtistid());
+        newAlbum.setTitle(album.getTitle());
+        newAlbum.setPrice(album.getPrice());
+        newAlbum.setAlbumart(album.getAlbumart());
+          
+        em.merge(newAlbum);
+    
     }
 }
