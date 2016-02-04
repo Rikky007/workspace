@@ -156,6 +156,13 @@ public class ShopManagerController {
         return "CreateAlbum";
     }
     
+    /**
+     * Mapování vytvoření alba
+     * @param genreSelected
+     * @param artistSelected
+     * @param createAlbum
+     * @return 
+     */
     @RequestMapping(value = "/CreateAlbum", method = RequestMethod.POST)
     public String setCreateAlbumPage(@RequestParam("genreSelected") Integer genreSelected, @RequestParam("artistSelected") Integer artistSelected, @ModelAttribute Album createAlbum){
       
@@ -167,5 +174,42 @@ public class ShopManagerController {
         createAlbum.setArtistid(myArtist);
                
         return "redirect:";
-    }   
+    }  
+    
+    /**
+     * Mapování stránky smazání alba
+     * @param deleteAlbumId
+     * @param model
+     * @return 
+     */
+    @RequestMapping(value = "/DeleteAlbum", method = RequestMethod.GET)
+    public String getDeleteAlbumPage(@RequestParam("deleteAlbumId")Integer deleteAlbumId,ModelMap model){
+        
+        //log.debug("obdržena Delete Album Page");
+        Album myAlbum = albumModel.findAlbumById(deleteAlbumId);
+        
+        model.put("deleteAlbumId", deleteAlbumId);
+        model.put("deleteAlbum", myAlbum);
+        
+        return "DeleteAlbum";
+    }
+    
+    /**
+     * Mapování stránky smazání alba (post)
+     * @param deleteAlbumId
+     * @param model
+     * @return 
+     */
+    @RequestMapping(value = "/DeleteAlbum", method = RequestMethod.POST)
+    public String setDeleteAlbumPage(@RequestParam("deleteAlbumId")Integer deleteAlbumId,ModelMap model){
+        
+        //log.debug("obdržena Delete Album Page");
+        Album myAlbum = albumModel.findAlbumById(deleteAlbumId);
+        
+        model.put("deleteAlbumId", myAlbum);
+        
+        albumModel.delete(myAlbum);
+        
+        return "redirect:";
+    }
 }

@@ -114,4 +114,14 @@ public class AlbumModel {
         em.merge(newAlbum);
     
     }
+    
+    /**
+     * Smazání alba podle ID
+     * @param album 
+     */
+    @Transactional
+    public void delete(Album album){
+        Album myAlbum = findAlbumById(album.getAlbumid());
+        em.remove(myAlbum);
+    }
 }

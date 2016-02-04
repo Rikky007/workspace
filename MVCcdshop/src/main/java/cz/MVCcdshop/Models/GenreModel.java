@@ -71,7 +71,7 @@ public class GenreModel {
             genreList = q.getResultList();
             
         }catch(Exception ex){
-                  
+                 
         }
         return genreList.get(0);
     }
