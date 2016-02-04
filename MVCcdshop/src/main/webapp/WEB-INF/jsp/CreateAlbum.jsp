@@ -17,5 +17,42 @@
             </ul>
         </div>
         <h2>Nové album</h2>
+        <form:form modelAttribute="createAlbum" method="POST" commandName="createAlbum" action="/MVCcdshop/ShopManager/CreateAlbum" >
+            <fieldset style="width:300px">
+
+                <h3>Žánr</h3>
+                <select name="genreSelected">
+                    <c:forEach items="${genres}" var = "myGenre">
+                        <option value="${myGenre.genreid}" ${myGenre.name==selectedGenre?'selected':''}>${myArtist.name}</option>
+                    </c:forEach>
+                </select>
+                <br />
+
+                <h3>Umělec</h3>
+                <select name="artistSelected">
+                    <c:forEach items="${artists}" var = "myArtist">
+                        <option value="${myArtist.artistid}" ${myArtist.name==selectedArtist?'selected':''}>${myArtist.name}</option>
+                    </c:forEach>
+                </select>
+                <br />
+
+                <h3>Název</h3>
+                <form:input name ="txtTitle" path="title"/>
+                <br />
+
+                <h3>Cena</h3>
+                <form:input path ="price"/>
+                <br />
+
+                <h3>AlbumArt</h3>
+                <form:input path ="albumArt" />
+                <br />
+
+                <input type="submit" value="Uložit" />
+                <br />
+                <br />
+            </fieldset>
+        </form:form>
+
     </body>
 </html>

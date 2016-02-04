@@ -132,4 +132,40 @@ public class ShopManagerController {
         return "redirect:";
     
     }
+    
+    /**
+     * Vytvoření nového alba
+     * @param model
+     * @return 
+     */
+    @RequestMapping(value = "/CreateAlbum", method = RequestMethod.GET)
+    public String getCreateAlbumPage(ModelMap model){
+        
+        Album myAlbum = new Album();
+        
+        List<Genre> genreList = genreModel.findAllGenres();
+        List<Artist> artistList = artistModel.findAllArtists();
+        
+        model.put("genres", genreList);
+        model.put("selectedGenre", myAlbum.getGenreid().getName());
+        
+        model.put("artists",artistList);
+        model.put("selectedArtist", myAlbum.getArtistid().getName());
+        model.addAttribute("createAlbum", myAlbum);
+        
+        return "CreateAlbum";
+    }
+    
+    @RequestMapping(value = "/CreateAlbum", method = RequestMethod.POST)
+    public String setCreateAlbumPage(@RequestParam("genreSelected") Integer genreSelected, @RequestParam("artistSelected") Integer artistSelected, @ModelAttribute Album createAlbum){
+      
+        
+        Genre myGenre = genreModel.findGenreById(genreSelected);
+        Artist myArtist = artistModel.findArtistById(artistSelected);
+        
+        createAlbum.setGenreid(myGenre);
+        createAlbum.setArtistid(myArtist);
+               
+        return "redirect:";
+    }   
 }
