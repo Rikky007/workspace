@@ -63,7 +63,7 @@ public class Orders implements Serializable {
     private String email;
     @Basic(optional = false)
     @Column(name = "TOTAL")
-    private Integer total;
+    private Double total;
     @JoinColumn(name = "USERID", referencedColumnName = "USERID")
     @ManyToOne
     private Users userid;
@@ -145,11 +145,11 @@ public class Orders implements Serializable {
         this.email = email;
     }
 
-    public Integer getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 

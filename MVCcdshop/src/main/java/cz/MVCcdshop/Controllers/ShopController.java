@@ -3,12 +3,14 @@ package cz.MVCcdshop.Controllers;
 import cz.MVCcdshop.Entities.Album;
 import cz.MVCcdshop.Entities.Genre;
 import cz.MVCcdshop.Models.AlbumModel;
+import cz.MVCcdshop.Models.CartModel;
 import cz.MVCcdshop.Models.GenreModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,9 @@ public class ShopController {
         
         @Resource(name="albumService")
         private AlbumModel albumModel;
+        
+        @Resource(name="cartService")
+        private AlbumModel cartModel;
         
 	/**
 	 * CDshop Root 
@@ -81,5 +86,16 @@ public class ShopController {
 		
 		return "Browse";
 	}
-	
+        
+        @RequestMapping(value = "/Details", method = RequestMethod.POST)
+        public String setStoreDetailPage(@RequestParam(value = "albumId", required = false)Integer albumId,@ModelAttribute("addedAlbum") Album addedAlbum, ModelMap model)
+        {
+            List<Genre> myGenreList = genreModel.findAllGenres();
+            model.put("genreList",myGenreList);
+            model.addAttribute("addedAlbum",addedAlbum);
+            request.getSession().setAttribute("addedAlbumId",albumId);
+            model.put("itemNumbers", cartModel.getAlbumsInCart().size());
+            
+            return "redirect:/ShoppingCart/";
+        }
 }

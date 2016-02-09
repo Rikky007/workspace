@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+  <!--zakladni tiles definice layoutu, kterym je jsp stranka vyplnena v atributu template-->
+  <definition name="base-layout" template="/WEB-INF/jsp/layout/base-layout.jsp">
+      <!--atribut title reprezentuje nadpis cele stranky v html hlavicce-->
+      <put-attribute name="title"  value="category.list.title"/>
+      <!--atribut header definuje jsp stranku s hlavickou, ktera se vlozi do hlavniho layoutu-->
+      <put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp"/>
+      <!--atribut menu definuje jsp stranku s levym menu, ktera se vlozi do hlavniho layoutu-->
+      <put-attribute name="menu"   value="/WEB-INF/jsp/layout/menu.jsp"/>
+      <!--atribut body definuje jsp stranku s obsahem, ktera se vlozi do hlavniho layoutu. 
+      Hodnota je zde zbytecna, protoze ji vzdy prepisujeme, proto stranku body.jsp v projektu ani nenajdete-->
+      <put-attribute name="body"   value="/WEB-INF/jsp/layout/body.jsp"/>
+      <!--atribut footer definuje jsp stranku s patickou, ktera se vlozi do hlavniho layoutu-->
+      <put-attribute name="footer"   value="/WEB-INF/jsp/layout/footer.jsp"/>
+  </definition>
+
+  <!--definice konkretni stranky, ktera dedi od hlavni definice nebo-li prejima vsechny vlastnosti.
+  Zaroven prepisuje vlstnost title a body nebo-li je spresnuje pro tuto konkretni stranku-->
+  <definition name="kategorie-list" extends="base-layout">
+      <put-attribute name="title"  value="category.list.title"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/kategorie/kategorie-seznam.jsp"/>
+  </definition>
+  
+  <definition name="kategorie-edit" extends="base-layout">
+      <put-attribute name="title"  value="category.edit.title"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/kategorie/kategorie-edit.jsp"/>
+  </definition>
+  
+  <definition name="exception" extends="base-layout">
+      <put-attribute name="title"  value="exception.title"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/error/exception.jsp"/>
+  </definition>
+
+</tiles-definitions>

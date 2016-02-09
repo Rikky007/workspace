@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/shema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/shema/p"
+	xmlns:context="http://www.springframework.org/shema/context"
+	xmlns:mvc="http://www.springframework.org/shema/mvc"
+	xmlns:aop="http://www.springframework.org/shema/aop"
+	xmlns:tx="http://www.springframework.org/shema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/shema/beans
+	http://www.springframework.org/shema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/shema/context
+	http://www.springframework.org/shema/context/spring-context-4.2.xsd
+	http://www.springframework.org/shema/mvc
+	http://www.springframework.org/shema/mvc/spring-mvc-4.2.xsd
+	http://www.springframework.org/shema/aop
+	http://www.springframework.org/shema/aop/spring-aop-4.2.xsd
+	http://www.springframework.org/shema/tx
+	http://www.springframework.org/shema/tx/spring-tx-4.2.xsd"
+>
+	<context:component-scan base-package="cz.MVCcdshop"/>
+	<mvc:annotation-driven />
+	
+	<!--  -->
+	
+	<!-- JPA support -->
+		<bean id="enf"
+			class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+			<property name="persistenceUnitName" value="MVCcdshopPU" />
+			<property name="jpaDialect" ref="jpaDialect" />
+			<property name="jpaVendorAdapter" ref="jpaAdapter" />
+		</bean>
+		<bean id="jpaDialect"	
+			class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"
+			lazy-init="true" />
+		<bean id="jpaAdapter"
+			class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+			lazy-init="true">
+			<property name="databasePlatform" value="org.hibernate.dialect.MySQLInnoDBDialect" />
+			<property name="database" value="MYSQL" />
+			<property name="showsql" value="false" />	
+		</bean>	
+		
+		<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"
+			lazy-init="true" />
+		<!-- Transaction support -->
+		<bean id="myTxManager"
+			class="org.springframework.orm.jpa.JpaTransactionManager">
+			<property name="entityManagerFactory" ref="enf" />
+		</bean>	
+		
+		<tx:annotation-driven transaction-manager="myTxManager"
+			proxy-taget-class="true" />
+			
+		<!-- View resolver -->
+		<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+			p:prefix="/WEB-INF/jsp"	 p:suffix=".jsp" />
+			
+
+</beans>

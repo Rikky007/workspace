@@ -1,0 +1,111 @@
+body{
+    padding:0px;
+    margin:0px;
+    background-color: #ccccff;
+    font-family: verdana,arial,sans-serif;
+    font-size:11px;
+    color:#333333;
+}
+
+div#header {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #0066ff;
+    background-color: #ccccff;
+    padding-top:5px;
+    padding-bottom:5px;
+    font-size:14px;
+    font-weight: bold;
+}
+
+div#body {
+    width: 100%;
+    background-color: white;
+}
+div#body div#body-menu {
+    width: 8%;
+    height: 100%;
+    position: relative;
+    float: left;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+}
+
+div#body div#body-content {
+    width: 85%;
+    height: 100%;
+    position: relative;
+    float: right;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+div#footer {
+    width: 100%;
+    height: 20px;
+    border-top:  1px solid #0066ff;
+    background-color: #ccccff;
+    padding-top:5px;
+    padding-bottom:5px;
+    text-align: right;
+}
+
+div.cleaner {
+    clear: both;
+}
+
+a {
+    color: #666666;
+}
+
+a:hover {
+    color: #333333;
+}
+
+table.table {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+
+table.table th {
+	background:#b5cfd2 url('../images/cell-blue.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+table.table td {
+	background:#dcddc0 url('../images/cell-grey.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+table.table td a {
+    text-decoration: none;
+    color: black
+}
+
+table.form td.pp {
+    border-right: 2px solid #ff3333;
+}
+
+table.form td.np {
+    border-right: 2px solid #999999;
+}
+
+table.form td span {
+    color: #ff3333;
+    font-style: italic;
+}
+table.form td.submit {
+    text-align: right;
+}

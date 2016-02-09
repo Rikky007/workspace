@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+    <!--Nastaveni resolveru, ktery nam pomuze vyhledat spravnou definici tilesu pro generovani vystupu.
+        Kdyz v kontroleru pak vratime napr. 'example-1' resolver hleda v souboru '/WEB-INF/tiles-defs.xml' odpovidajici definici -->
+    <bean id="tilesResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+        p:viewClass="org.springframework.web.servlet.view.tiles2.TilesView"
+        p:order="2"/>
+
+    <!--Nastaveni cesty k souboru obsahujiciho xml s nastavenim tiles framoworku-->
+    <bean id="tilesConfigurer"
+          class="org.springframework.web.servlet.view.tiles2.TilesConfigurer" 
+          p:definitions="/WEB-INF/tiles-defs.xml"/>
+    
+    <!--Nastaveni resolveru, ktery nam pomuze vyhledat spravnou jsp stranku pro generovani vystupu.
+    Parametr prefix vlastne znamena, ze bude hledat (prida pred string) v adresari WEB-INF/jps.
+    Parametr suffix znamena, ze bude vyhledavat (prida za string) vsechny soubory s priponou .jsp.
+    Kdyz v kontroleru pak vratime napr. 'example-1' resolver nam doplni string na '/WEB-INF/jsp/example-1.jsp' -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:order="3" />
+    
+    <!--Nastaveni interceptoru, ktery se bude starat o vztvoreni/zruseni sessiony hibernatu -->
+    <bean id="openSessionInViewInterceptor" class="org.springframework.orm.hibernate4.support.OpenSessionInViewInterceptor" p:sessionFactory-ref="sessionFactory"/>
+    
+    <!--Provede sken uvedeneho package. Projde vsechny tridy v danem baliku a podbalicich a snazi se najit
+    tridy oanotovane anotaci Controller, Component, Service atd. Pote si vytvori jejich instance a ulozi do aplikacniho kontextu.
+    Sken kontroleru se musi nachazet zde v nastaveni dispatcher servletu.      
+     -->
+    <context:component-scan base-package="cz.vsmie.example.hibernate.controller" />
+</beans>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+    
+    <!--Nastavani beany, ktera nacte properties files obsahujici bud lokalizaci aplikace nebo nastaveni.
+        V tagu list muze byt vicero tagu value obsahujici jen nazev souboru bez koncovky. Soubory musi byt v 
+        adresari, kde se nachazi java tridy (src/main/java).
+        Pokud se jedna o lokalizacni properties file, tak se nazev uvadi bez lokalizacniho stringu - tento soubor se na
+        disku jmenuje text_resources_cs_CZ.properties 
+    -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> 
+        <property name="basenames"> 
+            <list> 
+                <value>text_resources</value> 
+            </list> 
+        </property> 
+    </bean>
+    
+    <!--Definice beany s exception resolverem tridou, ktera odchytava vyjimky a zpracovava je. Tento resolver bude odchytavat
+   vyjimky uvedene uvnitr beany.
+    -->
+    <bean name="exceptionResolver" class="cz.vsmie.example.hibernate.exception.BaseExceptionResolver" autowire="byName">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="javax.servlet.jsp.JspException">exception</prop>
+                <prop key="javax.servlet.ServletException">exception</prop>
+                <prop key="java.lang.Exception">exception</prop>
+                <prop key="java.lang.Throwable">exception</prop>
+                <prop key="java.lang.RuntimeException">exception</prop>
+                <prop key="org.springframework.web.bind.ServletRequestBindingException">exception</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Nastaveni datasourcu pro pripojeni k databazi. Pripojeni bude probihat pomici JDBC -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+        <property name="username" value="cdshop"/>
+        <property name="password" value="passdb"/>
+    </bean>
+        
+    <!-- Nastaveni beany session factory pomoci ktere se budeme dotazovat hibernatu na data. Uvnitr najdeme odkaz na datasource,
+    aby mohl hibernate komunikovat s databazi. Nastaveni prislusneho package, kde jsou entity slouzici pro mapovani DB tabulek a 
+    nakonec nastaveni samotneho hibernatu, kde je jen nastaveni dialectu nebo-li sqlka, ktere bude hibernate pouyivat pro komunikaci s DB.-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" lazy-init="true" autowire="default">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="cz.vsmie.example.hibernate.db.entity" />
+                 
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!-- Nastaveni transaction manageru, ktery se bude starat o pripadne transakce tedy provadet commit a 
+    rollbacky-->
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <tx:annotation-driven transaction-manager="txManager"/>
+    
+    <!--Provede sken uvedeneho package. Projde vsechny tridy v danem baliku a podbalicich a snazi se najit
+   tridy oanotovane anotaci Component, Service atd. Pote si vytvori jejich instance a ulozi do aplikacniho kontextu.
+    -->
+    <context:component-scan base-package="cz.vsmie.example.hibernate.service" />
+    <context:component-scan base-package="cz.vsmie.example.hibernate.db.dao" />
+    <context:component-scan base-package="cz.vsmie.example.hibernate.validation" />
+</beans>

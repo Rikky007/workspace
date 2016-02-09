@@ -1,0 +1,1 @@
+<span style="padding-right: 10px;"><fmt:message key="footer" /></span>

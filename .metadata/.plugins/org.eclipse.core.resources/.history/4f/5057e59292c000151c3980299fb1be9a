@@ -1,0 +1,5 @@
+package cz.MVCcdshop.Controllers;
+
+public class ShopController {
+
+}

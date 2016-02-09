@@ -1,0 +1,11 @@
+<%--
+Soubor slouzi ke vlozeni nasledujicich radku na zacatek vsech jsp stranek, coz je nastaveno ve web.xml
+a usnadni nam to praci s vkladanim knihoven. Je ale dobre rozmyslet, co vsechno sem dame, abychom zbytecne aplikaci
+nezpomalovali tim, ze do vsech stranek budeme vkladat knihovnu, kterou realne vyuzivame jen na jedne strance.
+--%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib  prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib  prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib  prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
