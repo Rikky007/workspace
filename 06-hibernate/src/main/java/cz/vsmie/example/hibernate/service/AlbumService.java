@@ -26,7 +26,7 @@ public interface AlbumService {
      * @param idKategorie bude pouzite jako ID pro vyhledavani
      * @return nalezenou kategorie pripadne null v pripade neuspechu
      */
-    public AlbumCommand findById(Long idKategorie);
+    public AlbumCommand findById(Integer idKategorie);
     
     /**
      * Metoda ulozi kategorii do DB nebo provede update kategorie
@@ -39,6 +39,6 @@ public interface AlbumService {
      * 
      * @param id pouzije se pro vyhledavani v DB a odstraneni objektu z ni
      */
-    public void delete(Long id);
+    public void delete(Integer id);
     
 }

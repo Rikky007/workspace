@@ -3,7 +3,7 @@ package cz.vsmie.example.hibernate.controller;
 import cz.vsmie.example.hibernate.command.KategorieCommand;
 import cz.vsmie.example.hibernate.service.KategorieService;
 import cz.vsmie.example.hibernate.validation.KategorieValidator;
-import javax.annotation.Resource;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,7 +88,7 @@ public class KategorieController {
      */
     @RequestMapping(method = RequestMethod.POST, value="/kategorie-save.htm")
     public String saveKategorie(Model model,
-            @ModelAttribute("kategorieCommand") KategorieCommand command,
+            @Valid @ModelAttribute("kategorieCommand") KategorieCommand command,
             BindingResult errors) {
 
         //zvalidujeme formular 

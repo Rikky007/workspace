@@ -24,10 +24,8 @@ import org.springframework.stereotype.Component;
 @Component("albumService")
 public class AlbumServiceImpl implements AlbumService {
 
-    @Autowired
-    AlbumDAO albumDAO;
-//    @Autowired
-//    ArtistDAO artistDAO;
+    @Autowired AlbumDAO albumDAO;
+    @Autowired ArtistDAO artistDAO;
 
     @Override
     public List<AlbumCommand> findAll() {
@@ -35,14 +33,14 @@ public class AlbumServiceImpl implements AlbumService {
         for (Album a : albumDAO.findAllActive()) {
             Artist artist = a.getArtistid();
             ArtistCommand artistCmd = new ArtistCommand(artist.getArtistid(), artist.getName());
-            albums.add(new AlbumCommand(a.getAlbumid(), artistCmd, a.getTitle(), a.getPrice(), a.getAlbumart()));
+            albums.add(new AlbumCommand(a.getAlbumid(), artistCmd.getName(), a.getTitle(), a.getPrice(), a.getAlbumart()));
         }
         
         return albums;
     }
 
     @Override
-    public AlbumCommand findById(Long id) {
+    public AlbumCommand findById(Integer id) {
         Album a = albumDAO.findById(id);
         if (a == null) {
             return null;
@@ -50,17 +48,23 @@ public class AlbumServiceImpl implements AlbumService {
         
         Artist artist = a.getArtistid();
         ArtistCommand artistCmd = new ArtistCommand(artist.getArtistid(), artist.getName());
-        return new AlbumCommand(a.getAlbumid(), artistCmd, a.getTitle(), a.getPrice(), a.getAlbumart());
+        return new AlbumCommand(a.getAlbumid(), artistCmd.getName(), a.getTitle(), a.getPrice(), a.getAlbumart());
     }
 
     @Override
     public void saveOrUpdate(AlbumCommand command) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Album a = new Album();
+        a.setTitle(command.getTitle());
+        //TODO
+        Artist artist = artistDAO.findById(command.getArtistid()) ;
+       
+        a.setArtistid( artist );  
+        
     }
 
     @Override
-    public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(Integer id) {
+        albumDAO.delete(id);
     }
 
 }

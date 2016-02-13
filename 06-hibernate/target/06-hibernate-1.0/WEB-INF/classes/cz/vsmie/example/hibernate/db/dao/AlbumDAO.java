@@ -16,12 +16,12 @@ public interface AlbumDAO {
     
     public List<Album> findAllActive();
     
-    public Album findById(Long albumId);
+    public Album findById(Integer albumId);
     
     public void saveAlbum(Album a);
     
     public void updateAlbum(Album a);
     
-    public void delete(Long albumId);
+    public void delete(Integer albumId);
     
 }

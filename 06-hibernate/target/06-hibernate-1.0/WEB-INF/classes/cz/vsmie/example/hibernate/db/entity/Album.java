@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 //import org.codehaus.jackson.annotate.JsonIgnore;
@@ -56,6 +57,13 @@ public class Album implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "albumid")
     private Collection<Cart> cartCollection;
 
+//    private boolean smazano;
+//
+//    @Transient
+//    public boolean getSmazano() {
+//        return smazano;
+//    }
+    
     public Album() {
     }
 
@@ -163,5 +171,9 @@ public class Album implements Serializable {
     public String toString() {
         return "cz.MVCcdshop.Entities.Album[ albumid=" + albumid + " ]";
     }
+
+//    public void setSmazano(boolean b) {
+//        this.smazano = b;
+//    }
     
 }

@@ -1,1 +1,1 @@
-<% response.sendRedirect("kategorie-seznam.htm"); %>
+<% response.sendRedirect("album-list.htm"); %>

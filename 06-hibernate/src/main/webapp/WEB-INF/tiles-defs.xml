@@ -8,7 +8,7 @@
   <!--zakladni tiles definice layoutu, kterym je jsp stranka vyplnena v atributu template-->
   <definition name="base-layout" template="/WEB-INF/jsp/layout/base-layout.jsp">
       <!--atribut title reprezentuje nadpis cele stranky v html hlavicce-->
-      <put-attribute name="title"  value="category.list.title"/>
+      <put-attribute name="title"  value="album.list.title"/>
       <!--atribut header definuje jsp stranku s hlavickou, ktera se vlozi do hlavniho layoutu-->
       <put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp"/>
       <!--atribut menu definuje jsp stranku s levym menu, ktera se vlozi do hlavniho layoutu-->
@@ -37,4 +37,18 @@
       <put-attribute name="body"   value="/WEB-INF/jsp/error/exception.jsp"/>
   </definition>
 
+  <definition name="album-details" extends="base-layout">
+      <put-attribute name="title"  value="album.details.title"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/cdshop/album-details.jsp"/>
+  </definition>  
+  
+  <definition name="album-edit" extends="base-layout">
+      <put-attribute name="title"  value="album.edit.title"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/cdshop/album-edit.jsp"/>
+  </definition>
+  
+  <definition name="album-list" extends="base-layout">
+      <put-attribute name="title"  value="album.list.title"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/cdshop/album-list.jsp"/>
+  </definition>
 </tiles-definitions>

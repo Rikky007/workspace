@@ -63,7 +63,7 @@ public class Kategorie implements Serializable {
         this.smazano = smazano;
     }
 
-@Transient
+    @Transient
     public Date getDatumVytvoreni() {
         return datumVytvoreni;
     }

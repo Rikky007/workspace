@@ -38,25 +38,28 @@ public class AlbumDAOImpl implements AlbumDAO {
     }
 
     @Override
-    public Album findById(Long albumId) {
+    public Album findById(Integer albumId) {
         Criteria c = getSession().createCriteria(Album.class);
-        c.add(Restrictions.eq("id", albumId));
+        c.add(Restrictions.eq("albumid", albumId));
         return (Album) c.uniqueResult();
     }
 
     @Override
     public void saveAlbum(Album a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getSession().save(a);
     }
 
     @Override
     public void updateAlbum(Album a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getSession().update(a);
     }
 
     @Override
-    public void delete(Long albumId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(Integer albumId) {
+        Album a = findById(albumId);
+//        a.setSmazano(true);
+//        getSession().update(a);
+        getSession().delete(a);
     }
 
 }

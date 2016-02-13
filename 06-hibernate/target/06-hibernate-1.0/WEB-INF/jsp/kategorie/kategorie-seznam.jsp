@@ -37,6 +37,7 @@ pokud neexistujou zadne kategorie zobrazime info hlasku jinak vytvorime tabulku
                                 <img src="<c:url value="/images/icon-delete.png"/>" alt="<fmt:message key="button.delete" />" title="<fmt:message key="button.delete" />"/>
                             </a>
                         </td>
+                        
                     </tr>
                 </c:forEach>
             </tbody>

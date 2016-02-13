@@ -1,5 +1,8 @@
 package cz.vsmie.example.hibernate.command;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Trida reprezentuje formular pro pridani/editaci kategorie. V html
  * vyrenderovanem v prohlizeci najdeme input typu hidden s atributem
@@ -11,21 +14,37 @@ package cz.vsmie.example.hibernate.command;
 public class AlbumCommand {
 
     Integer albumid;
-    ArtistCommand artistid;
-    GenreCommand genreid;
+    
+    Integer artistid;
+    Integer genreid;
+        
+    String artist;
+    String genre;
+    
+    
     String title;
     Double price;
     String albumart;
 
-    public AlbumCommand() {
-    }
+    List<ArtistCommand> artists;
+    
+    List<GenreCommand> genres;
+   
+    
+    public AlbumCommand(){}
+    
 
-    public AlbumCommand(Integer albumid, ArtistCommand artistid, String title, Double price, String albumart) {
+    
+    public AlbumCommand(Integer albumid, String artist, String title, Double price, String albumart) {
         this.albumid = albumid;
-        this.artistid = artistid;
+        this.artist = artist;
         this.title = title;
         this.price = price;
         this.albumart = albumart;
+        
+        artists = new ArrayList<ArtistCommand>();
+        genres  = new ArrayList<GenreCommand>();
+        
     }
 
      public Integer getAlbumid() {
@@ -36,12 +55,12 @@ public class AlbumCommand {
         this.albumid = albumid;
     }
 
-    public ArtistCommand getArtistid() {
-        return artistid;
+    public String getArtist() {
+        return artist;
     }
 
-    public void setArtistid(ArtistCommand artistid) {
-        this.artistid = artistid;
+    public void setArtist(String artistid) {
+        this.artist = artistid;
     }
 
     public String getTitle() {
@@ -68,39 +87,45 @@ public class AlbumCommand {
         this.albumart = albumart;
     }
 
-    public GenreCommand getGenre() {
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenreid(String genre) {
+        this.genre = genre;
+    }   
+        public Integer getArtistid() {
+        return artistid;
+    }
+
+    public void setArtistid(Integer artistid) {
+        this.artistid = artistid;
+    }
+
+    public Integer getGenreid() {
         return genreid;
     }
 
-    public void setGenreid(GenreCommand genreid) {
+    public void setGenreid(Integer genreid) {
         this.genreid = genreid;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (albumid != null ? albumid.hashCode() : 0);
-        return hash;
+    public List<ArtistCommand> getArtists() {
+        return artists;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AlbumCommand)) {
-            return false;
-        }
-        AlbumCommand other = (AlbumCommand) object;
-        if ((this.albumid == null && other.albumid != null) || (this.albumid != null && !this.albumid.equals(other.albumid))) {
-            return false;
-        }
-        return true;
+    public void setArtists(List<ArtistCommand> artists) {
+        this.artists = artists;
     }
 
-    @Override
-    public String toString() {
-        return "cz.MVCcdshop.Entities.Album[ albumid=" + albumid + " ]";
+    public List<GenreCommand> getGenres() {
+        return genres;
     }
-    
+
+    public void setGenres(List<GenreCommand> genres) {
+        this.genres = genres;
+    }
+
     
     
 }
