@@ -8,8 +8,12 @@ package cz.vsmie.example.hibernate.service.impl;
 import cz.vsmie.example.hibernate.command.AlbumCommand;
 import cz.vsmie.example.hibernate.command.CartCommand;
 import cz.vsmie.example.hibernate.command.CartItemCommand;
+import cz.vsmie.example.hibernate.db.dao.ArtistDAO;
 import cz.vsmie.example.hibernate.db.dao.CartitemsDAO;
+import cz.vsmie.example.hibernate.db.entity.Album;
+import cz.vsmie.example.hibernate.db.entity.Artist;
 import cz.vsmie.example.hibernate.db.entity.Cartitems;
+import cz.vsmie.example.hibernate.db.entity.Cart;
 import cz.vsmie.example.hibernate.service.CartitemsService;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +28,7 @@ import org.springframework.stereotype.Component;
 public class CartItemServiceImpl implements CartitemsService {
 
     @Autowired private CartitemsDAO cartitemsDAO;
+    @Autowired private ArtistDAO artistDAO;
     
     @Override
     public List<CartItemCommand> findAlbumFromCartid(Integer cartid) {
@@ -31,10 +36,22 @@ public class CartItemServiceImpl implements CartitemsService {
     }
 
     @Override
-    public void addItem(CartCommand cart, AlbumCommand album, Integer count) {
+    public void addItem(CartCommand cartCmd, AlbumCommand albumCmd, Integer count) {
         Cartitems item = new Cartitems();
-        item.setAlbumid(album.getAlbumid());
-        item.setCartid(cart.getCartid());
+        Album a = new Album();
+        Cart c = new Cart();
+        Artist artist = artistDAO.findById(albumCmd.getArtistid());
+        
+        /// VYtvoreni a nastaveni novych Entity
+        a.setAlbumart(albumCmd.getAlbumart());
+        a.setArtistid(artist);
+        a.setArtistid();
+        
+        
+        
+        
+        item.setAlbumid(a);
+        item.setCartid(c);
         item.setCount(count);
         item.setDatecreated(new Date());
         

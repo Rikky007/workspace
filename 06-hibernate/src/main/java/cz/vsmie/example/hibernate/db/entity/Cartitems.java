@@ -24,8 +24,8 @@ public class Cartitems implements Serializable{
     private static final long serialVersionUID  = 1L;
     
     private Integer id;
-    private Integer cartid;
-    private Integer albumid;
+    private Cart cartid;
+    private Album albumid;
     private Integer count;
     private Date datecreated = new Date();
     
@@ -45,21 +45,21 @@ public class Cartitems implements Serializable{
     
     @JoinColumn(name = "CARTID", referencedColumnName="CARTID")
     @ManyToOne(optional=false)
-    public Integer getCartid() {
+    public Cart getCartid() {
         return cartid;
     }
 
-    public void setCartid(Integer cartid) {
+    public void setCartid(Cart cartid) {
         this.cartid = cartid;
     }
     
     @JoinColumn(name = "ALBUMID", referencedColumnName="ALBUMID")
     @ManyToOne(optional=false)
-    public Integer getAlbumid() {
+    public Album getAlbumid() {
         return albumid;
     }
 
-    public void setAlbumid(Integer albumid) {
+    public void setAlbumid(Album albumid) {
         this.albumid = albumid;
     }
     

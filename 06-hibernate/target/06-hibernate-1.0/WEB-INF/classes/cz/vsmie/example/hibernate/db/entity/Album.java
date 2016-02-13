@@ -49,6 +49,7 @@ public class Album implements Serializable {
     @Basic(optional = false)
     @Column(name = "ALBUMART")
     private String albumart;
+    
     @JoinColumn(name = "GENREID", referencedColumnName = "GENREID")
     @ManyToOne(optional = false)
     private Genre genreid;

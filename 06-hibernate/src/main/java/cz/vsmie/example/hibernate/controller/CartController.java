@@ -66,7 +66,7 @@ public class CartController {
         CartCommand cartCommand = cartService.findById(cartid);
         AlbumCommand albumCommand = albumService.findById(albumid);
 
-        cartService.addAlbum(cartCommand, albumCommand);
+        cartItemService.addItem(cartCommand, albumCommand, 3);
         
         
         //model.addAttribute("cartid",cartCommand );
