@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Grant
  */
 @Transactional
+@SuppressWarnings("unchecked")
 @Component("albumDAO")
 public class AlbumDAOImpl implements AlbumDAO {
 

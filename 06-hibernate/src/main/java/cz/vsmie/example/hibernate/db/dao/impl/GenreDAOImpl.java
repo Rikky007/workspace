@@ -8,8 +8,10 @@ package cz.vsmie.example.hibernate.db.dao.impl;
 import cz.vsmie.example.hibernate.db.dao.GenreDAO;
 import cz.vsmie.example.hibernate.db.entity.Genre;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,27 +36,33 @@ public class GenreDAOImpl implements GenreDAO{
     
     @Override
     public List<Genre> findAllActive() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Criteria c = getSession().createCriteria(Genre.class);
+        return c.list();
+    }
+    
+    @Override
+    public Genre findById(Integer genreId) {
+        Criteria c = getSession().createCriteria(Genre.class);
+        c.add(Restrictions.eq("genreid", genreId));
+        return (Genre) c.uniqueResult();
     }
 
     @Override
-    public Genre findById(Integer artistId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void saveGenre(Genre g) {
+        getSession().save(g);
     }
 
     @Override
-    public void saveGenre(Genre a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void updateGenre(Genre a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateGenre(Genre g) {
+        getSession().update(g);
     }
 
     @Override
     public void delete(Integer artistId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Genre g = findById(artistId);
+//        a.setSmazano(true);
+        getSession().delete(g);
+//        getSession().update(a);
     }
     
 }

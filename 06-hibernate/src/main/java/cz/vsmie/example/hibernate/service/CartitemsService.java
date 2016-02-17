@@ -20,7 +20,7 @@ public interface CartitemsService {
     
     void addItem(CartCommand cart, AlbumCommand album, Integer count);//moznost1
     
-    void addItem(CartCommand cart, CartItemCommand cartItemCmd );//moznost2
+    //void addItem(CartCommand cart, CartItemCommand cartItemCmd );//moznost2
     
     
 }

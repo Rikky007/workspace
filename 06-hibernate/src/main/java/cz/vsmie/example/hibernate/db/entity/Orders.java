@@ -67,6 +67,9 @@ public class Orders implements Serializable {
     @JoinColumn(name = "USERID", referencedColumnName = "USERID")
     @ManyToOne
     private Users userid;
+    @JoinColumn(name = "CARTID", referencedColumnName = "CARTID")
+    @ManyToOne
+    private Cart cartid;
 
     public Orders() {
     }
@@ -166,6 +169,14 @@ public class Orders implements Serializable {
         int hash = 0;
         hash += (orderid != null ? orderid.hashCode() : 0);
         return hash;
+    }
+
+    public Cart getCartid() {
+        return cartid;
+    }
+
+    public void setCartid(Cart cartid) {
+        this.cartid = cartid;
     }
 
     @Override

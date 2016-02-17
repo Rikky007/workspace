@@ -15,7 +15,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Grant
  */
 
-@Component
+@Controller
 public class CartController {
 
     @Autowired private CartService cartService;
@@ -36,11 +36,17 @@ public class CartController {
     
     @RequestMapping(method = RequestMethod.GET, value = "/show-cart.htm")
     public String showCart(Model model, 
-                            HttpSession session)
+                            HttpSession session, HttpServletRequest request)
     {
         Integer cartid = (Integer) session.getAttribute("cartid");
-        CartCommand cartCommand = cartService.findById(cartid);
+        if (cartid == null) {
+            
+            cartid = cartService.createCart();
+            session = request.getSession(); //vytvoreni session
+            session.setAttribute("cartid",  cartid );
+        }
         
+        CartCommand cartCommand = cartService.findById(cartid);
         List<CartItemCommand> cartItems = cartItemService.findAlbumFromCartid(cartid);
         
         model.addAttribute("cart-item", cartItems);
@@ -50,14 +56,14 @@ public class CartController {
     
     @RequestMapping(method = RequestMethod.GET, value = "/add-to-cart.htm")    
     public String addToCart(Model model,
-                    @RequestParam("albumid") Integer albumid,
+                    @RequestParam("id") Integer albumid,
                     HttpSession session,
                     HttpServletRequest request)
     {
         
         Integer cartid = (Integer) session.getAttribute("cartid");
         if (cartid == null) {
-            // jeste neni session
+            
             cartid = cartService.createCart();
             session = request.getSession(); //vytvoreni session
             session.setAttribute("cartid",  cartid );

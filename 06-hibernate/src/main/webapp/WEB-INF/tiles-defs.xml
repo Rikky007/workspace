@@ -51,4 +51,34 @@
       <put-attribute name="title"  value="album.list.title"/>
       <put-attribute name="body"   value="/WEB-INF/jsp/cdshop/album-list.jsp"/>
   </definition>
+  
+  <definition name="show-cart" extends="base-layout">
+      <put-attribute name="title"  value="cart.show.title"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/cdshop/show-cart.jsp"/>
+  </definition>
+  
+  <definition name="order-edit" extends="base-layout">
+      <put-attribute name="title"  value="order.edit.title"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/cdshop/order-edit.jsp"/>
+  </definition>
+  
+  <definition name="order-list" extends="base-layout">
+      <put-attribute name="title"  value="order.list.title"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/cdshop/order-list.jsp"/>
+  </definition>
+  
+  <definition name="user-list" extends="base-layout">
+      <put-attribute name="title"  value="user.list.title"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/cdshop/user-list.jsp"/>
+  </definition>
+  
+  <definition name="checkout" extends="base-layout">
+      <put-attribute name="title"  value="checkout.title"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/cdshop/checkout.jsp"/>
+  </definition>
+  
+    <definition name="registration" extends="base-layout">
+      <put-attribute name="title"  value="registration.title"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/cdshop/registration.jsp"/>
+    </definition>
 </tiles-definitions>

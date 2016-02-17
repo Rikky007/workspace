@@ -34,7 +34,7 @@ public class Album implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    @Column(name = "ALBUMID", unique = true, nullable=false)
+    @Column(name = "ALBUMID", unique = true, nullable = false)
     private Integer albumid;
     
     @JoinColumn(name = "ARTISTID", referencedColumnName = "ARTISTID")
@@ -53,10 +53,12 @@ public class Album implements Serializable {
     @JoinColumn(name = "GENREID", referencedColumnName = "GENREID")
     @ManyToOne(optional = false)
     private Genre genreid;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "albumid")
-    private Collection<Orderdetail> orderdetailCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "albumid")
-    private Collection<Cart> cartCollection;
+    
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "albumid")
+//    private Collection<Orderdetail> orderdetailCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "albumid")
+//    private Collection<Cart> cartCollection;
+    
 
 //    private boolean smazano;
 //
@@ -128,25 +130,25 @@ public class Album implements Serializable {
         this.genreid = genreid;
     }
 
-    @XmlTransient
-//    @JsonIgnore
-    public Collection<Orderdetail> getOrderdetailCollection() {
-        return orderdetailCollection;
-    }
-
-    public void setOrderdetailCollection(Collection<Orderdetail> orderdetailCollection) {
-        this.orderdetailCollection = orderdetailCollection;
-    }
-
-    @XmlTransient
-//    @JsonIgnore
-    public Collection<Cart> getCartCollection() {
-        return cartCollection;
-    }
-
-    public void setCartCollection(Collection<Cart> cartCollection) {
-        this.cartCollection = cartCollection;
-    }
+//   @XmlTransient
+////    @JsonIgnore
+//    public Collection<Orderdetail> getOrderdetailCollection() {
+//        return orderdetailCollection;
+//    }
+//
+//    public void setOrderdetailCollection(Collection<Orderdetail> orderdetailCollection) {
+//        this.orderdetailCollection = orderdetailCollection;
+//    }
+//
+//    @XmlTransient
+////    @JsonIgnore
+//    public Collection<Cart> getCartCollection() {
+//        return cartCollection;
+//    }
+//
+//    public void setCartCollection(Collection<Cart> cartCollection) {
+//        this.cartCollection = cartCollection;
+ //   }
 
     @Override
     public int hashCode() {

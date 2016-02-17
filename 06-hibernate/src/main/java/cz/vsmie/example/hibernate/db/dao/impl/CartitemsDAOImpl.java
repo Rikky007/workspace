@@ -6,7 +6,9 @@
 package cz.vsmie.example.hibernate.db.dao.impl;
 
 import cz.vsmie.example.hibernate.db.dao.CartitemsDAO;
+import cz.vsmie.example.hibernate.db.entity.Album;
 import cz.vsmie.example.hibernate.db.entity.Cartitems;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -21,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Grant
  */
 @Transactional
+@SuppressWarnings("unchecked")
 @Component("CartitemsDAO")
 public class CartitemsDAOImpl implements CartitemsDAO{
     
@@ -31,14 +34,17 @@ public class CartitemsDAOImpl implements CartitemsDAO{
     }
     @Override
     public List<Cartitems> findAllActive() {
-        Criteria c = getSession().createCriteria(AlbumDAOImpl.class);
+        Criteria c = getSession().createCriteria(Cartitems.class);
         return c.list();
     }
 
+    
+    //nutnost?
     @Override
-    public void findAlbum(Integer cartId) {
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Cartitems> findAlbumFromCartid(Integer cartId) {
+        Criteria c = getSession().createCriteria(Cartitems.class);
+        c.add(Restrictions.eq("cartid.cartid", cartId));
+        return c.list();
     }
 
     @Override
@@ -48,19 +54,23 @@ public class CartitemsDAOImpl implements CartitemsDAO{
         return (Cartitems) c.uniqueResult();
     }
 
+    //níže si nejsem jistý :)
+    
     @Override
     public void saveCartitems(Cartitems c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getSession().saveOrUpdate(c);
     }
 
     @Override
     public void updateCartitems(Cartitems c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getSession().update(c);
     }
 
     @Override
-    public void delete(Integer artistId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(Integer itemsId) {
+         Cartitems c = findById(itemsId);
+
+        getSession().delete(c);
     }
     
 }

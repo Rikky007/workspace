@@ -4,19 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Trida reprezentuje formular pro pridani/editaci kategorie. V html
- * vyrenderovanem v prohlizeci najdeme input typu hidden s atributem
- * name=idAlbum, input typu text s atributem name=nazev a textareu s atributem
- * name=popis
- *
- * @author Ing. Jiří Franc
+ * Trida reprezentuje formular pro pridani/editaci alba. 
  */
 public class AlbumCommand {
 
     Integer albumid;
     
     Integer artistid;
-    Integer genreid;
+    Integer genreid = 1;
         
     String artist;
     String genre;

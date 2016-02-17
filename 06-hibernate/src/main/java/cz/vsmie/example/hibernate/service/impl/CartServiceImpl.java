@@ -6,10 +6,12 @@
 package cz.vsmie.example.hibernate.service.impl;
 
 import cz.vsmie.example.hibernate.command.AlbumCommand;
+import cz.vsmie.example.hibernate.command.ArtistCommand;
 import cz.vsmie.example.hibernate.command.CartCommand;
 import cz.vsmie.example.hibernate.db.dao.AlbumDAO;
 import cz.vsmie.example.hibernate.db.dao.CartDAO;
 import cz.vsmie.example.hibernate.db.entity.Album;
+import cz.vsmie.example.hibernate.db.entity.Artist;
 import cz.vsmie.example.hibernate.db.entity.Cart;
 import cz.vsmie.example.hibernate.service.CartService;
 import java.util.ArrayList;
@@ -27,12 +29,17 @@ import org.springframework.stereotype.Component;
 public class CartServiceImpl implements CartService{
     
     @Autowired private CartDAO cartDAO;
-    @Autowired private AlbumDAO albumDAO;
     
     @Override
     public CartCommand findById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cart c = cartDAO.findById(id);
+        if (c == null) {
+            return null;
+        }
+
+        return new CartCommand(c.getCartid());
     }
+
 
     
     

@@ -7,6 +7,7 @@ package cz.vsmie.example.hibernate.db.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,19 +23,28 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Cartitems implements Serializable{
     private static final long serialVersionUID  = 1L;
-    
+    @Id
+    @Column(name="ID", unique=true,nullable=false)
     private Integer id;
+    @JoinColumn(name = "CARTID", referencedColumnName="CARTID")
+    @ManyToOne(optional=false)
     private Cart cartid;
+    @JoinColumn(name = "ALBUMID", referencedColumnName="ALBUMID")
+    @ManyToOne(optional=false)
     private Album albumid;
+    @Basic(optional = false)
+    @Column(name = "COUNT")
     private Integer count;
+    @Basic(optional = false)
+    @Column(name = "DATECREATED")
     private Date datecreated = new Date();
+    
     
     public Cartitems(){
         
     }
     
-    @Id
-    @Column(name="ID", unique=true,nullable=false)
+    
     public Integer getId() {
         return id;
     }
@@ -43,8 +53,7 @@ public class Cartitems implements Serializable{
         this.id = id;
     }
     
-    @JoinColumn(name = "CARTID", referencedColumnName="CARTID")
-    @ManyToOne(optional=false)
+    
     public Cart getCartid() {
         return cartid;
     }
@@ -53,8 +62,7 @@ public class Cartitems implements Serializable{
         this.cartid = cartid;
     }
     
-    @JoinColumn(name = "ALBUMID", referencedColumnName="ALBUMID")
-    @ManyToOne(optional=false)
+    
     public Album getAlbumid() {
         return albumid;
     }
@@ -63,8 +71,7 @@ public class Cartitems implements Serializable{
         this.albumid = albumid;
     }
     
-    @Basic(optional = false)
-    @Column(name = "COUNT")
+    
     public Integer getCount() {
         return count;
     }
@@ -73,8 +80,7 @@ public class Cartitems implements Serializable{
         this.count = count;
     }
     
-    @Basic(optional = false)
-    @Column(name = "DATECREATED")
+    
     public Date getDatecreated() {
         return datecreated;
     }

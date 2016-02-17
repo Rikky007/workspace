@@ -15,12 +15,12 @@ import java.util.List;
 public interface GenreDAO {
    public List<Genre> findAllActive();
     
-    public Genre findById(Integer artistId);
+    public Genre findById(Integer genreId);
     
-    public void saveGenre(Genre a);
+    public void saveGenre(Genre g);
     
-    public void updateGenre(Genre a);
+    public void updateGenre(Genre g);
     
-    public void delete(Integer artistId);
+    public void delete(Integer genreId);
     
 }

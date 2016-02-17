@@ -5,23 +5,21 @@
  */
 package cz.vsmie.example.hibernate.db.dao;
 
-import cz.vsmie.example.hibernate.db.entity.Cart;
+import cz.vsmie.example.hibernate.db.entity.Orders;
 import java.util.List;
 
 /**
  *
  * @author Grant
  */
-public interface CartDAO {
+public interface OrdersDAO {
+    public Orders findById(Integer orderId);
 
-    public Cart findById(Integer cartId);
+    public List<Orders> findAllActive();
 
-    public List<Cart> findAllActive();
+    public void saveOrders(Orders order);
 
-    public void saveCart(Cart cart);
+    public void updateOrders(Orders order);
 
-    public void updateCart(Cart cart);
-
-    public void delete(Integer cartId);
-
+    public void delete(Integer orderId);
 }

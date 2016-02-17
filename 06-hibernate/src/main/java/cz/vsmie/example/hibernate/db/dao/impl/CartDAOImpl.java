@@ -7,11 +7,15 @@ package cz.vsmie.example.hibernate.db.dao.impl;
 
 import cz.vsmie.example.hibernate.db.dao.CartDAO;
 import cz.vsmie.example.hibernate.db.entity.Album;
+import cz.vsmie.example.hibernate.db.entity.Artist;
 import cz.vsmie.example.hibernate.db.entity.Cart;
 import cz.vsmie.example.hibernate.db.entity.Kategorie;
+import cz.vsmie.example.hibernate.db.entity.Users;
+import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +37,7 @@ public class CartDAOImpl implements CartDAO {
     }
 
     @Override
-    public Iterable<Cart> findAllActive() {
+    public List<Cart> findAllActive() {
         Criteria c = getSession().createCriteria(Cart.class);
         return c.list();
     }
@@ -43,19 +47,27 @@ public class CartDAOImpl implements CartDAO {
         getSession().save(cart);
     }
 
+    //níže si nejsem jistý :)
     @Override
-    public Cart findById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Cart findById(Integer cartId) {
+        Criteria c = getSession().createCriteria(Cart.class);
+        c.add(Restrictions.eq("cartid", cartId));
+        return (Cart) c.uniqueResult();
     }
 
     @Override
     public void updateCart(Cart c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getSession().update(c);
     }
 
     @Override
-    public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(Integer cartId) {
+        Cart c= findById(cartId);
+        getSession().delete(c);
     }
+
+  
+
+
     
 }

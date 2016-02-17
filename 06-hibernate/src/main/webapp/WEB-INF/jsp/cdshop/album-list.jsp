@@ -1,12 +1,12 @@
 <%--
-JSP stranka slozici pro zobrazeni seznamu kategorii.
+JSP stranka slozici pro zobrazeni seznamu alb.
 
 pokud neexistujou zadne kategorie zobrazime info hlasku jinak vytvorime tabulku
 --%>
 <c:choose>
     <c:when test="${empty albums}"><i><fmt:message key="album.no.result" /></i></c:when>
     <c:otherwise>
-        <a href="<c:url value="/show-cart.htm"/>"></a>
+        <a href="<c:url value="/show-cart.htm"/>">Kosik</a>
         <table class="table">
             <thead>
                 <tr>
@@ -15,15 +15,15 @@ pokud neexistujou zadne kategorie zobrazime info hlasku jinak vytvorime tabulku
                     <th><fmt:message key="album.label.price" /></th>
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
+                    <th>&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
-                 <%--
-                foreachem projdeme vsechny existujici kategorie a pro kazdou udelam jeden radek
+                <%--
+               foreachem projdeme vsechny existujici kategorie a pro kazdou udelam jeden radek
                 --%>
                 <c:forEach items="${albums}" var="item">
                     <tr>
-                        <tr>
                         <td><c:out value="${item.title}"/></td>
                         <td><c:out value="${item.artist}"/></td>
                         <td><c:out value="${item.price}"/></td>
@@ -42,7 +42,7 @@ pokud neexistujou zadne kategorie zobrazime info hlasku jinak vytvorime tabulku
                         </td>
                         <td>
                             <a href="<c:url value="/add-to-cart.htm?id=${item.albumid}"/>" >
-                                Kosik
+                                <img src="<c:url value="/images/icon-basket.png"/>" alt="<fmt:message key="button.basket" />" title="<fmt:message key="button.basket" />"/>
                             </a>
                         </td>
                     </tr>
@@ -53,8 +53,8 @@ pokud neexistujou zadne kategorie zobrazime info hlasku jinak vytvorime tabulku
 </c:choose>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('a.delete').click(function() {
+    $(document).ready(function () {
+        $('a.delete').click(function () {
             return confirm('<fmt:message key="delete.confirmation" />');
         });
     });

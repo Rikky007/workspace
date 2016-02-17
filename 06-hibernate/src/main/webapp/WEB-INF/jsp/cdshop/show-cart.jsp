@@ -19,22 +19,30 @@
             </thead>
             <tbody>
                 <%--
-                foreachem projdeme vsechny existujici kategorie a pro kazdou udelam jeden radek
+                foreachem projdeme vsechny položky v košíkua pro kazdou udelam jeden radek
                 --%>
                 <c:forEach items="${cart-item}" var="item">
                     <tr>
-                        <td><c:out value="${item.album.title}"/></td>
-                        <td><c:out value="${item.album.artist}"/></td>
-                        <td><c:out value="${item.album.price}"/></td>
+                        <td><c:out value="${item.title}"/></td>
+                        <td><c:out value="${item.artist}"/></td>
+                        <td><c:out value="${item.price}"/></td>
                         <td><c:out value="${item.count}"/></td>
                         <td>
-                            <a href="<c:url value="/remove-album.htm?id=${item.album.albumid}"/>" class="delete">
+                            <a href="<c:url value="/remove-album.htm?id=${item.albumid}"/>" class="delete">
                                 <img src="<c:url value="/images/icon-delete.png"/>" alt="<fmt:message key="button.delete" />" title="<fmt:message key="button.delete" />"/>
                             </a>
                         </td>
-                        
+
                     </tr>
                 </c:forEach>
+<!--                <tr><%--celková cena--%><%--
+                <td colspan="2"><fmt:message key="order.label.total" /></td>
+                <td colspan="3">
+                    <c:forEach items="${cartitems}" var="item">
+                        <c:set var="total" scope="session" value="${total+item.price}"/>
+</c:forEach>--%>
+                </td>
+                </tr>-->
             </tbody>
         </table>
     </c:otherwise>

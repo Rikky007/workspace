@@ -31,7 +31,7 @@ public class AlbumController {
     @Autowired private GenreService genreService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/album-list.htm")
-    public String seznamKategorii(Model model) {
+    public String listAlbums(Model model) {
         model.addAttribute("albums", albumService.findAll());
         return "album-list";
     }
@@ -40,7 +40,7 @@ public class AlbumController {
     public String editAlbum(Model model, @RequestParam("id") Integer albumid) {
         model.addAttribute("albumCommand", albumService.findById(albumid));
         model.addAttribute("artists", artistService.findAll());
-//        model.addAttribute("genres",   genreService.findAll());
+       model.addAttribute("genres",   genreService.findAll());
         return "album-edit";
     }
 

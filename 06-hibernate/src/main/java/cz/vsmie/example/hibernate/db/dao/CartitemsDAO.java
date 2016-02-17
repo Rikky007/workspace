@@ -5,6 +5,7 @@
  */
 package cz.vsmie.example.hibernate.db.dao;
 
+import cz.vsmie.example.hibernate.db.entity.Album;
 import cz.vsmie.example.hibernate.db.entity.Cartitems;
 import java.util.List;
 
@@ -16,14 +17,14 @@ public interface CartitemsDAO {
     
     public List<Cartitems> findAllActive();
     
-    public Cartitems findById(Integer artistId);
+    public Cartitems findById(Integer itemsId);
     
     public void saveCartitems(Cartitems c);
     
     public void updateCartitems(Cartitems c);
     
-    public void delete(Integer artistId);
+    public void delete(Integer itemsId);
     
-    public void findAlbum(Integer cartId);
+    public List<Cartitems> findAlbumFromCartid(Integer itemsId);
     
 }

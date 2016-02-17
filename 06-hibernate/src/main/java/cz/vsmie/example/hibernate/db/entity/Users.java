@@ -53,7 +53,7 @@ public class Users implements Serializable {
     @Basic(optional = false)
     @Column(name = "LASTNAME")
     private String lastname;
-    @OneToMany(mappedBy = "userid")
+    @OneToMany(mappedBy = "userid")  //???
     private Collection<Orders> ordersCollection;
     @JoinColumn(name = "USERSROLE", referencedColumnName = "ROLEID")
     @ManyToOne(optional = false)

@@ -14,6 +14,21 @@ public class CartItemCommand {
     AlbumCommand album;
     Integer count;
 
+    public String getTitle() {
+        return album.getTitle();
+    }
+    public String getArtist() {
+        return album.getArtist();
+    }
+    public Double getPrice() {
+        return album.getPrice();
+    }
+    public Integer getAlbumid() {
+        return album.getAlbumid();
+    }
+    public CartItemCommand() {
+    }    
+    
     CartItemCommand(AlbumCommand album, Integer count) {
         this.album = album;
         this.count = count;

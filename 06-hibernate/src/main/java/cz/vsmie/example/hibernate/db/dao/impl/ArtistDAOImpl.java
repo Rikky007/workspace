@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Grant
  */
 @Transactional
+@SuppressWarnings("unchecked")
 @Component("artistDAO")
 public class ArtistDAOImpl implements ArtistDAO {
 
@@ -40,7 +41,7 @@ public class ArtistDAOImpl implements ArtistDAO {
     
     @Override
     public Artist findById(Integer artistId) {
-        Criteria c = getSession().createCriteria(Album.class);
+        Criteria c = getSession().createCriteria(Artist.class);
         c.add(Restrictions.eq("artistid", artistId));
         return (Artist) c.uniqueResult();
     }
