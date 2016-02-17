@@ -23,7 +23,7 @@ public interface CartitemsDAO {
     
     public void updateCartitems(Cartitems c);
     
-    public void delete(Integer itemsId);
+    public void deleteCartitems(Integer itemsId);
     
     public List<Cartitems> findAlbumFromCartid(Integer itemsId);
     

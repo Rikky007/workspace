@@ -6,7 +6,7 @@ pokud neexistujou zadne kategorie zobrazime info hlasku jinak vytvorime tabulku
 <c:choose>
     <c:when test="${empty albums}"><i><fmt:message key="album.no.result" /></i></c:when>
     <c:otherwise>
-        <a href="<c:url value="/show-cart.htm"/>">Kosik</a>
+        <a href="<c:url value="/show-cart.htm"/>"><fmt:message key="cart.show.title" /></a>
         <table class="table">
             <thead>
                 <tr>

@@ -11,19 +11,19 @@ package cz.vsmie.example.hibernate.command;
  */
 public class GenreCommand {
 
-    private Long id;
+    private Integer id;
     private String name;
 
-    public GenreCommand(Long id, String name) {
+    public GenreCommand(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

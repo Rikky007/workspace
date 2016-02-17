@@ -5,15 +5,26 @@
  */
 package cz.vsmie.example.hibernate.command;
 
+import cz.vsmie.example.hibernate.db.entity.Cart;
+
 /**
  *
  * @author Grant
  */
 public class CartItemCommand {
     
-    AlbumCommand album;
-    Integer count;
+    private AlbumCommand album;
+    private Integer count;
+    private Integer id;
+     private Cart cartid;
+     
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getTitle() {
         return album.getTitle();
     }

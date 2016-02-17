@@ -79,17 +79,13 @@ public class CartItemServiceImpl implements CartitemsService {
         cartitemsDAO.saveCartitems(item);
     }
 
-//    @Override
-//    public void addItem(CartCommand cart, CartItemCommand cartItemCmd) {
-//        Cartitems item = new Cartitems();
-//        item.setAlbumid(cartItemCmd.getAlbum());
-//        item.setCartid(cart.getCartid());
-//        item.setCount(cartItemCmd.getCount());
-//        item.setDatecreated(new Date());
-//        
-//        cartitemsDAO.saveCartitems(item);
-//    
-//    }
+    @Override
+    public void removeItem(CartCommand cart, AlbumCommand album) {
+        cartitemsDAO.deleteCartitems(Integer.SIZE);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
     
     
     

@@ -40,7 +40,7 @@ JSP stranka slozici pro zobrazeni formulare.
                 <td><fmt:message key="album.label.genre" /></td>
                 <td>
                     <form:select path="genre">
-                        <c:forEach items="${genress}" var="gen">
+                        <c:forEach items="${genres}" var="gen">
                             <form:option value="${gen.name}" label="${gen.name}"/>
                         </c:forEach>
                     </form:select>

@@ -11,6 +11,7 @@ import cz.vsmie.example.hibernate.command.CartItemCommand;
 import cz.vsmie.example.hibernate.service.AlbumService;
 import cz.vsmie.example.hibernate.service.CartService;
 import cz.vsmie.example.hibernate.service.CartitemsService;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,77 +28,67 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author Grant
  */
-
 @Controller
 public class CartController {
 
-    @Autowired private CartService cartService;
-    @Autowired private CartitemsService cartItemService;
-    
+    @Autowired
+    private AlbumService albumService;
+    @Autowired
+    private CartService cartService;
+    @Autowired
+    private CartitemsService cartItemService;
+
     @RequestMapping(method = RequestMethod.GET, value = "/show-cart.htm")
-    public String showCart(Model model, 
-                            HttpSession session, HttpServletRequest request)
-    {
+    public String showCart(Model model,
+            HttpSession session, HttpServletRequest request) {
         Integer cartid = (Integer) session.getAttribute("cartid");
         if (cartid == null) {
-            
+
             cartid = cartService.createCart();
             session = request.getSession(); //vytvoreni session
-            session.setAttribute("cartid",  cartid );
+            session.setAttribute("cartid", cartid);
         }
-        
+
         CartCommand cartCommand = cartService.findById(cartid);
         List<CartItemCommand> cartItems = cartItemService.findAlbumFromCartid(cartid);
-        
-        model.addAttribute("cart-item", cartItems);
+        model.addAttribute("items", cartItems);
         return "show-cart";
     }
-    
-    
-    @RequestMapping(method = RequestMethod.GET, value = "/add-to-cart.htm")    
+
+    @RequestMapping(method = RequestMethod.GET, value = "/add-to-cart.htm")
     public String addToCart(Model model,
-                    @RequestParam("id") Integer albumid,
-                    HttpSession session,
-                    HttpServletRequest request)
-    {
-        
+            @RequestParam("id") Integer albumid,
+            HttpSession session,
+            HttpServletRequest request) {
+
         Integer cartid = (Integer) session.getAttribute("cartid");
         if (cartid == null) {
-            
+
             cartid = cartService.createCart();
             session = request.getSession(); //vytvoreni session
-            session.setAttribute("cartid",  cartid );
+            session.setAttribute("cartid", cartid);
         }
-        
+
         CartCommand cartCommand = cartService.findById(cartid);
         AlbumCommand albumCommand = albumService.findById(albumid);
 
-        cartItemService.addItem(cartCommand, albumCommand, 3);
-        
-        
-        //model.addAttribute("cartid",cartCommand );
+        cartItemService.addItem(cartCommand, albumCommand, 1);
 
-        
+        model.addAttribute("cartid",cartCommand );
         return "redirect:album-list.htm";
     }
-    
-    @Autowired private AlbumService albumService;
-    
-    @RequestMapping(method =RequestMethod.GET, value = "/remove-album.htm")
-    public String removeFromCart(Model model, 
+
+ 
+
+    @RequestMapping(method = RequestMethod.GET, value = "/remove-album.htm")
+    public String removeFromCart(Model model,
             @RequestParam("id") Integer albumId,
             @ModelAttribute("cartCommand") CartCommand cartCommand,
-            BindingResult errors){
+            BindingResult errors) {
+
         
-        // smazat z COMMAND
-        AlbumCommand albumCommand = albumService.findById(albumId);
-        cartCommand.removeAlbum(albumCommand);
-        
-        // smazat z DATABAZE
-        albumService.delete(albumId);
-        
+
         return "redirect:show-cart";
     }
-            
-    
+
 }

@@ -22,5 +22,6 @@ public interface CartitemsService {
     
     //void addItem(CartCommand cart, CartItemCommand cartItemCmd );//moznost2
     
+    void removeItem(CartCommand cart, AlbumCommand album);
     
 }

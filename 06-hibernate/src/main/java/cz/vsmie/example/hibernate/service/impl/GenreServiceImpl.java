@@ -7,6 +7,7 @@ package cz.vsmie.example.hibernate.service.impl;
 
 import cz.vsmie.example.hibernate.command.ArtistCommand;
 import cz.vsmie.example.hibernate.command.GenreCommand;
+import cz.vsmie.example.hibernate.db.dao.ArtistDAO;
 import cz.vsmie.example.hibernate.db.dao.GenreDAO;
 import cz.vsmie.example.hibernate.db.entity.Genre;
 import cz.vsmie.example.hibernate.db.entity.Artist;
@@ -24,21 +25,22 @@ import org.springframework.stereotype.Component;
 public class GenreServiceImpl implements GenreService{
     
     @Autowired GenreDAO genreDAO;
+    @Autowired ArtistDAO artistDAO;
     
     @Override
     public List<GenreCommand> findAll() {
         
-//        List<ArtistCommand> artists = new ArrayList<ArtistCommand>();
-//        for (Genre a : artistDAO.findAllActive()) {
-//            Artist artist = a.getArtistid();
-//            ArtistCommand artistCmd = new ArtistCommand(artist.getArtistid(), artist.getName());
-//            artists.add(new ArtistCommand(a.getArtistid(), artistCmd.getName()));
-//        }
-//        
-//        return artists;
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<GenreCommand> genres = new ArrayList<GenreCommand>();
+        for (Genre genre : genreDAO.findAllActive()) {
+            GenreCommand genreCmd = new GenreCommand(genre.getGenreid(), genre.getName());
+            genres.add(new GenreCommand(genre.getGenreid(), genreCmd.getName()));
+        }
+
+        return genres;
     }
+        
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
 
     @Override
     public GenreCommand findById(Integer idKategorie) {

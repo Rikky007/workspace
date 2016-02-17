@@ -39,7 +39,7 @@ public class CartitemsDAOImpl implements CartitemsDAO{
     }
 
     
-    //nutnost?
+    
     @Override
     public List<Cartitems> findAlbumFromCartid(Integer cartId) {
         Criteria c = getSession().createCriteria(Cartitems.class);
@@ -54,7 +54,7 @@ public class CartitemsDAOImpl implements CartitemsDAO{
         return (Cartitems) c.uniqueResult();
     }
 
-    //níže si nejsem jistý :)
+    
     
     @Override
     public void saveCartitems(Cartitems c) {
@@ -67,7 +67,7 @@ public class CartitemsDAOImpl implements CartitemsDAO{
     }
 
     @Override
-    public void delete(Integer itemsId) {
+    public void deleteCartitems(Integer itemsId) {
          Cartitems c = findById(itemsId);
 
         getSession().delete(c);
