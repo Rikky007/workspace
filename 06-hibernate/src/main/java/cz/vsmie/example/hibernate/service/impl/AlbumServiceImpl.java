@@ -12,6 +12,8 @@ import cz.vsmie.example.hibernate.db.dao.ArtistDAO;
 import cz.vsmie.example.hibernate.db.entity.Album;
 import cz.vsmie.example.hibernate.db.entity.Artist;
 import cz.vsmie.example.hibernate.command.ArtistCommand;
+import cz.vsmie.example.hibernate.command.GenreCommand;
+import cz.vsmie.example.hibernate.db.dao.GenreDAO;
 import cz.vsmie.example.hibernate.db.entity.Genre;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +30,7 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Autowired AlbumDAO albumDAO;
     @Autowired ArtistDAO artistDAO;
+    @Autowired GenreDAO genreDAO;
 
     @Override
     public List<AlbumCommand> findAll() {
@@ -36,7 +39,9 @@ public class AlbumServiceImpl implements AlbumService {
         for (Album a : albumDAO.findAllActive()) {
             Artist artist = a.getArtistid();
             ArtistCommand artistCmd = new ArtistCommand(artist.getArtistid(), artist.getName());
-            albums.add(new AlbumCommand(a.getAlbumid(), artistCmd.getName(), a.getTitle(), a.getPrice(), a.getAlbumart()));
+            Genre genre = a.getGenreid();
+            GenreCommand genreCmd = new GenreCommand(genre.getGenreid(), genre.getName());
+            albums.add(new AlbumCommand(a.getAlbumid(), artistCmd.getName(), genreCmd.getName(), a.getTitle(), a.getPrice(), a.getAlbumart()));
         }
         
         return albums;
@@ -48,9 +53,9 @@ public class AlbumServiceImpl implements AlbumService {
         if (a == null) {
             return null;
         }
-        
+        Genre genre = a.getGenreid();
         Artist artist = a.getArtistid();
-        return new AlbumCommand(a.getAlbumid(), artist.getName(), a.getTitle(), a.getPrice(), a.getAlbumart());
+        return new AlbumCommand(a.getAlbumid(), artist.getName(), genre.getName(), a.getTitle(), a.getPrice(), a.getAlbumart());
     }
 
     @Override
@@ -60,6 +65,13 @@ public class AlbumServiceImpl implements AlbumService {
         
         Artist artist = artistDAO.findById(command.getArtistid()); 
         a.setArtistid( artist );  
+        
+        Genre genre = genreDAO.findById(command.getGenreid()); 
+        a.setGenreid( genre ); 
+        
+        a.setPrice(command.getPrice());
+        
+        a.setAlbumart(command.getAlbumart());
         
         //objekt bez id => pridani noveho
         if (command.getAlbumid() == null || command.getAlbumid().equals(0L)) {   

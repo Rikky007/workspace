@@ -13,7 +13,7 @@
             <thead>
                 
                 <tr>
-                    <th colspan="5" style="background-color: orange"><fmt:message key="cart.show.title" /></th>
+                    <th colspan="5" style="background-color: #F6855E"><fmt:message key="cart.show.title" /></th>
                 </tr> 
                 <tr>
                     <th><fmt:message key="album.label.title" /></th>
@@ -42,7 +42,7 @@
 
                     </tr>
                 </c:forEach>
-                <tr style="background-color: orange; color: black"><%--celková cena--%>
+                <tr style="background-color: #F6855E; color: black"><%--celková cena--%>
                     <td colspan="2"><fmt:message key="order.label.total" /></td>
                     <td colspan="3">
                         <c:forEach items="${items}" var="item">

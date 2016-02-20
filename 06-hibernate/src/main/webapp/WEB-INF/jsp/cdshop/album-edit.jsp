@@ -22,7 +22,7 @@ JSP stranka slozici pro zobrazeni formulare.
                     Tento tag slouzi pro zobrazeni chyb. Kdyz nastavime atribut path na konkretni jmeno, zobrazi jen chybu pro tuto
                     polozku. Pokud bychom pouzili hvezdicku, zobrazi vsechny chyby.
                     --%>
-                    <form:errors path="title" element="span" />
+                    <form:errors path="title" element="input" />
                 </td>
             </tr>
             <tr>
@@ -33,7 +33,7 @@ JSP stranka slozici pro zobrazeni formulare.
                             <form:option value="${art.name}" label="${art.name}"/>
                         </c:forEach>
                     </form:select>
-                    <form:errors path="artist" element="span" />
+                    <form:errors path="artist" element="select" />
                 </td>
             </tr>
             <tr>
@@ -45,7 +45,7 @@ JSP stranka slozici pro zobrazeni formulare.
                         </c:forEach>
                     </form:select>
 
-                    <form:errors path="artist" element="span" />
+                    <form:errors path="genre" element="select" />
                 </td>
             </tr>
             <tr>
@@ -56,7 +56,7 @@ JSP stranka slozici pro zobrazeni formulare.
                     Tento tag slouzi pro zobrazeni chyb. Kdyz nastavime atribut path na konkretni jmeno, zobrazi jen chybu pro tuto
                     polozku. Pokud bychom pouzili hvezdicku, zobrazi vsechny chyby.
                     --%>
-                    <form:errors path="price" element="span" />
+                    <form:errors path="price" element="input" />
                 </td>
             </tr>
             <tr>

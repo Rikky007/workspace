@@ -214,15 +214,18 @@ a:active
 
 #categories
 {
-	font-family: Constantia, Georgia, serif;
+	font-family: Arial, sans-serif;/*Constantia, Georgia, serif;*/
 	list-style-type: none;
-	border-right: #5d5a53 1px dotted;
-	padding-right: 10px;
-	margin: 0 25px 0 0;
+	/*border-right: #5d5a53 1px dotted;*/
 	float: left;
         margin-bottom: 10px;
 }
 
+#categories a{
+    border-right: #5d5a53 1px dotted;
+    padding-right: 10px;
+    margin: 0 25px 0 0;
+}
 #categories a:link, #categories a:visited
 {
 	color: #9B9993;

@@ -50,7 +50,7 @@ public class CartItemServiceImpl implements CartitemsService {
             Integer count = item.getCount();
             
             CartItemCommand cartItem = new CartItemCommand();
-            AlbumCommand albumCommand = new AlbumCommand(album.getAlbumid(), album.getArtistid().getName(), album.getTitle(), album.getPrice(), album.getAlbumart());
+            AlbumCommand albumCommand = new AlbumCommand(album.getAlbumid(), album.getArtistid().getName(), album.getGenreid().getName(), album.getTitle(), album.getPrice(), album.getAlbumart());
             cartItem.setAlbum( albumCommand );
             cartItem.setCount( count );
             

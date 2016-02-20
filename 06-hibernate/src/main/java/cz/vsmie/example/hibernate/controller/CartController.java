@@ -67,13 +67,18 @@ public class CartController {
             cartid = cartService.createCart();
             session = request.getSession(); //vytvoreni session
             session.setAttribute("cartid", cartid);
+            Integer counter = 1;
+            session.setAttribute("counter", counter);
         }
 
         CartCommand cartCommand = cartService.findById(cartid);
         AlbumCommand albumCommand = albumService.findById(albumid);
 
         cartItemService.addItem(cartCommand, albumCommand, 1);
-
+        Integer counter = (Integer) session.getAttribute("counter");
+        counter++;
+        
+        model.addAttribute("counter", counter);
         model.addAttribute("cartid",cartCommand );
         return "redirect:album-list.htm";
     }

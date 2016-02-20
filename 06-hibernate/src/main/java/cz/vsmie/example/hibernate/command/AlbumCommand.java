@@ -11,7 +11,7 @@ public class AlbumCommand {
     Integer albumid;
     
     Integer artistid;
-    Integer genreid = 1;
+    Integer genreid;
         
     String artist;
     String genre;
@@ -30,9 +30,10 @@ public class AlbumCommand {
     
 
     
-    public AlbumCommand(Integer albumid, String artist, String title, Double price, String albumart) {
+    public AlbumCommand(Integer albumid, String artist, String genre, String title, Double price, String albumart) {
         this.albumid = albumid;
         this.artist = artist;
+        this.genre = genre;
         this.title = title;
         this.price = price;
         this.albumart = albumart;

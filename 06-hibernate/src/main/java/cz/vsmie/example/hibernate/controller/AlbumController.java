@@ -9,6 +9,7 @@ import cz.vsmie.example.hibernate.command.AlbumCommand;
 import cz.vsmie.example.hibernate.service.AlbumService;
 import cz.vsmie.example.hibernate.service.ArtistService;
 import cz.vsmie.example.hibernate.service.GenreService;
+import cz.vsmie.example.hibernate.validation.AlbumValidator;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ public class AlbumController {
     @Autowired private AlbumService albumService;
     @Autowired private ArtistService artistService;
     @Autowired private GenreService genreService;
+    @Autowired private AlbumValidator albumValidator;
 
     @RequestMapping(method = RequestMethod.GET, value = "/album-list.htm")
     public String listAlbums(Model model) {
@@ -44,23 +46,40 @@ public class AlbumController {
         return "album-edit";
     }
 
-  
+    @RequestMapping(method = RequestMethod.GET, value="/album-new.htm")
+    public String newAlbum(Model model) {
+        //Predavame command object. Jmeno promenne musi odpovidat jmenu v jsp strance v tagu form:form atribut commandName
+        model.addAttribute("albumCommand", new AlbumCommand());
+        model.addAttribute("artists", artistService.findAll());
+       model.addAttribute("genres",   genreService.findAll());
+        return "album-edit";
+    }
+    
     @RequestMapping(method = RequestMethod.POST, value = "/album-save.htm")
     public String saveAlbums(Model model,
             @Valid @ModelAttribute("albumCommand") AlbumCommand command,
             BindingResult errors) {
 
         //zvalidujeme formular 
+        albumValidator.validate(command, errors);
         //kategorieValidator.validate(command, errors);
         //pokud jsou nejake chyby, zobrazime formular a vypiseme chyby
         if (errors.hasErrors()) {
             model.addAttribute("albumCommand", command);
+            model.addAttribute("artists", artistService.findAll());
+            model.addAttribute("genres",   genreService.findAll());
             return "album-edit";
         }
 
         //pokud nejsou chyby, tak ulozime pomoci servisni tridy a pote provedeme redirect na seznam kategorii
         albumService.saveOrUpdate(command);
 
+        return "redirect:album-list.htm";
+    }
+    
+    @RequestMapping(method = RequestMethod.GET, value="/album-delete.htm")
+    public String deleteAlbum(@RequestParam("id") Integer albumid) {
+        albumService.delete(albumid);
         return "redirect:album-list.htm";
     }
 }
